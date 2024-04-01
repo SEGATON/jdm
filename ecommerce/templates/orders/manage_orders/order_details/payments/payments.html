@@ -1,0 +1,56 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+	<div class="container ">
+		<div class="row">
+			<div class="col-md-2 border_right col_md_2_height_100_pc">
+
+				{% include 'memberships/sidebar_left.html' %}
+
+
+			</div>
+
+			<div class="col-md-10 ">
+				<br>
+			<h5>Payments center</h5>
+			<hr>
+
+				<a href="{% url 'ecommerce:add_payment' %}">add payment</a> 
+			<hr>
+
+			
+
+
+							<div class="row g-1">
+								<h6>payment methods on account</h6>
+
+								<hr>
+
+
+								{% for payment_method in payments %}
+										<div class="col-md-3">
+											<div class="card">
+												{{payment_method.id}}
+												{{payment_method}}
+
+												<a href="{% url 'ecommerce:edit_payment_method' payment_method.pk %}">edit payment</a> |
+												<a href="{% url 'ecommerce:delete_payment_method' payment_method.pk %}">delete payment</a>
+											</div>
+										</div>
+								{% endfor %}
+
+							</div>
+
+		
+
+			</div>
+
+
+		</div>
+	</div>	
+
+
+	{% endblock %}
+
+
+
+

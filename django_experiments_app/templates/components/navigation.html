@@ -1,0 +1,55 @@
+<div id="navigation">
+
+
+<a href="{% url 'ecommerce:front_page' %}">ecommerce app</a> | 
+
+
+<a href="{% url 'five_start_rating_system:front_page' %}">rate</a> | 
+
+
+<a href="{% url 'blog:front_page' %}">blog app</a> |
+
+
+<a href="{% url 'ecommerce:orders' %}">orders</a> | 
+ 
+<a href="{% url 'account_signup' %}">Signup</a> | 
+<a href="{% url 'account_login' %}">Login</a> | 
+
+
+
+<a href="{% url 'cart:front_page' %}">
+	<span id="cart_quantity">
+		<i class="fa-solid fa-cart-shopping"></i> Cart ({{cart|length}})
+	</span>
+</a> |
+
+
+
+<a href="{% url 'memberships:profile' %}">Profile</a> | 
+<a href="{% url 'account_logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a> | 
+
+<a href="{% url 'accounts:account' %}"><i class="fa-solid fa-user"></i> My account</a> | 
+
+
+
+<a href="{% url 'ds_mp_app:front_page' %}">ds mp app</a> |
+
+
+<a href="{% url 'cart:front_page' %}">cart</a> |
+<a href="{% url 'customers:front_page' %}">customers</a> |
+<a href="{% url 'checkout:front_page' %}">checkout</a> |
+<a href="{% url 'payments:front_page' %}">payments</a> |
+<a href="{% url 'orders:front_page' %}">orders</a> |
+<a href="{% url 'addresses:front_page' %}">addresses</a> |
+
+
+<a href="{% url 'ecommerce:wishlists' %}">wishlists</a> |
+
+<a href="{% url 'postman:inbox' %}">inbox</a> |
+
+
+
+
+
+</div>
+

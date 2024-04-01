@@ -1,0 +1,32 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+			2
+			</div>
+			<div class="col-md-8">
+				<div class="row">
+					
+					{% for article in articles.all %}
+						{% if article.published == true  %}
+							<div class="col-md-4">
+								<div class="card">
+									<a href="{{article.get_absolute_url}}">{{article}}</a>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+					
+				</div>
+			</div>
+			<div class="col-md-2">
+			2
+			</div>
+		</div>
+	</div>
+
+
+	{% endblock %}

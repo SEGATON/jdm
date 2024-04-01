@@ -1,0 +1,71 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+	<div class="container ">
+		<div class="row">
+			<div class="col-md-2 border_right col_md_2_height_100_pc">
+
+				{% include 'accounts_components/sidebar_left.html' %}
+
+
+			</div>
+
+			<div class="col-md-8 ">
+				<br>
+			<h5>Account</h5>
+			<hr>
+			<br>
+			<p>
+				<b>Welcome back:</b> {{user.username}}<br>
+				<b>First name:</b> {{user.first_name}} <b>Last name:</b> {{user.last_name}}<br>
+				<b>Phone number:</b>{{user.phone_number}}<br>
+				<b>Email:</b> {{user.email}}<br>
+				<b>Account type: </b><span class="badge badge_green"> {{user.get_account_type_display}}</span><br>
+				<br>
+				<b>Member since:</b> {{user.date_joined}} | <b>Last visit: </b> {{user.last_login}}
+				<br>
+				<br>
+				<b>Vendor application status: </b> 
+
+				<a href="{% url 'accounts:vendor_application' %}">Apply for vendor account</a>
+
+			</p>
+
+
+			<hr>
+
+
+
+			<br>
+
+
+			<h5>Change username:</h5>
+			<table class="table ">
+				<form action="" method="POST">
+					{% csrf_token %}
+					<tr><td class="p-0">{{change_username_form.username}}<button>submit</button><br><br></td></tr>
+				
+				</form>
+			</table>
+			<br>
+
+
+			<h5>Change phone number:</h5>
+			<table class="table ">
+				<form action="" method="POST">
+					{% csrf_token %}
+					<tr><td class="p-0">{{change_phone_number_form.phone_number}}<button>submit</button><br><br></td></tr>
+				
+				</form>
+			</table>
+		
+
+			</div>
+
+			<div class="col-2">
+			
+			</div>
+		</div>
+	</div>	
+
+
+	{% endblock %}

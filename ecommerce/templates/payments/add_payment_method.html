@@ -1,0 +1,31 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+				
+				</div>
+				<div class="col-md-3"></div>
+
+			</div>
+		</div>
+<hr>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<table class="table">
+						{% csrf_token %}
+						<tr><td>{{add_payment_method_form.as_table}}</td></tr>
+						<tr><td><button>add payment</button></td></tr>
+					</table>
+				</div>
+				<div class="col-md-6"></div>
+
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+	{% endblock %}	}

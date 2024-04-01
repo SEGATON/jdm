@@ -1,0 +1,67 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				{% include 'widgets/sidebar.html' %}
+				<hr>
+			</div>
+			<div class="col-md-5">
+				
+				<div class="card blog_content_card ">
+					<h3 class="p-3">{{article.title}}</h3>
+					<hr>
+					<p class="p-3">
+						<b>Author: </b> {{.author.first_name}} {{article.author.last_name}} 
+						<b>Email: </b> {{article.author.email}} 
+						<b>Date published: </b> {{article.date_published}} 
+						<b>Date updated: </b> {{article.date_updated}}
+						<b>In: </b> 
+						{% for kaa in article.category.all %}
+							<a href="{{article.get_absolute_url}}">{{kaa}}</a>
+						{% endfor %}
+					</p>
+				</div>
+
+				<div class="card blog_content_card">
+					{% if article.featured_image %}
+					<img src="{{article.featured_image.url}}">
+					{% endif %}
+				</div>
+				<div class="card blog_content_card">
+					{% include 'components/social_share_menu.html' %}
+				</div>
+				<div class="card blog_content_card p-3">
+					<p>{{article.introduction|safe}}</p>
+					<p>{{article.main_paragraph|safe}}</p>
+					<p>{{article.conclusion|safe}}</p>
+
+				</div>
+
+				<div class="card">
+					{% include 'commenting_system/commenting_system.html' %}
+
+				</div>
+
+
+				<div class="card blog_content_card">
+
+				</div>
+				<p>
+
+				</p>
+
+				<hr>
+				{{related_articles}}
+					
+			</div>
+			<div class="col-md-2">
+			2
+			</div>
+		</div>
+	</div>
+
+
+	{% endblock %}

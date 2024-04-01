@@ -1,0 +1,43 @@
+
+{% include 'template_parts/header.html' %}
+	{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+		
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-2">
+				
+				</div>
+				<div class="col-md-8">
+				<h4>Create wishlist</h4>
+				<form method="POST">
+					{% csrf_token %}
+{{create_wishlist_form.as_p}}
+<button>create wishlist</button>
+				</div>
+				<div class="col-md-2">
+				
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+		
+		</div>
+	</div>
+</div>
+
+	{% endblock %}
+
+
+
+
+
+
+
+
+
+

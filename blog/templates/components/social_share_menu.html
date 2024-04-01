@@ -1,0 +1,14 @@
+{% load social_share %}
+
+
+
+<ul class="social_share_menu">
+		<li>{% post_to_facebook object_or_url "Post to Facebook!" %}</li>
+		<li>{% post_to_twitter "New article: {{article.title}}. Check it out!" object_or_url "Post to Twitter" %}</li>
+
+		<li>{% send_email article.title "New article: {{article.title}}. Check it out!" object_or_url "Share via email" %}</li>
+		<li>{% post_to_reddit "New article: {{article.title}}"  %}</li>
+		<li>{% post_to_telegram "New article: {{article.title}}"  %}</li>
+		<li>{% post_to_whatsapp object_or_url "Share via WhatsApp" %}</li>
+		<li>{% save_to_pinterest object_or_url %}{% add_pinterest_script %}</li>
+</ul>

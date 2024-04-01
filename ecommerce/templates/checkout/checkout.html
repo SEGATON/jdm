@@ -1,0 +1,167 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 p-3">
+
+				</div>
+				<div class="col-md-3"></div>
+
+			</div>
+		</div>
+		<hr>
+
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+
+					<br>
+					<div class="card p-2">
+						<h3>checkout</h3>
+						<hr>
+						<br>
+
+						<h5>billing address</h5>
+						{{order.address_billing.user.first_name}} {{order.address_billing.user.last_name}}<br>
+						{{order.address_billing.street_name_01}}<br>
+						{% if order.address_billing.street_name_02 %}{{order.address_billing.street_name_02}}<br>{% endif %}
+						{{order.address_billing.street_city}} {{order.address_billing.street_state}} {{order.address_billing.street_zip_code}}<br>
+
+						<a href="">change billing address</a>
+
+						<br>
+
+						<h5>shipping address</h5>
+						{{order.address_shipping.user.first_name}} {{order.address_shipping.user.last_name}}<br>
+						{{order.address_shipping.street_name_01}}<br>
+						{% if order.address_shipping.street_name_02 %}{{order.address_shipping.street_name_02}}<br>{% endif %}
+						{{order.address_shipping.street_city}} {{order.address_shipping.street_state}} {{order.address_shipping.street_zip_code}}<br>
+
+						<a href="">change shipping address</a>
+					</div>
+					<br>
+					<div class="card p-2">
+						<h5>payment</h5>
+						{{order.payment.user.first_name}} {{order.payment.user.last_name}}<br>
+						{{order.payment.payment_method}}<br>
+						{{order.payment.card_number}}<br>
+						{{order.payment.expiration_date}}<br>
+						{{order.payment.security_code}}<br>
+						{{order.payment.zip_code}}
+						{{order.payment.card_type}}
+
+						<a href="">change payment method</a>
+					</div>
+					<br>
+					<div class="card p-2">
+						<h5>ordered ({{order.order_items.count}}) items</h5>
+						<hr>
+					<table class="table ">
+
+						<thead>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><b>Title</b></td>
+								<td><b>SKU</b></td>
+								<td><b>QTY</b></td>
+								<td><b>Regular price</b></td>
+								<td><b>Sale price</b></td>
+								<td><b>Item total</b></td>
+								<td><b>Item weight</b></td>
+								<td></td>
+							</tr>
+						</thead>
+						
+			
+				
+						
+							{% for item in  order.order_items.all %}
+							
+							<tr>
+								<td>
+									{{forloop.counter}}
+								</td>
+								<td>
+									{% load thumbnail %}
+									<a href="{{item.product.get_absolute_url}}"><img src="{% thumbnail item.product.featured_image 50x50 crop %}" class="border_radius_sm"></a>
+									
+								</td>
+								<td>
+									<a href="{{item.product.get_absolute_url}}">{{item.product.title}}</a>
+								</td>
+								<td>
+									<a href="{{item.product.get_absolute_url}}">{{item.product.product_SKU}}</a>
+								</td>
+								<td>
+									<a href="{%  url 'ecommerce:decrement_cart_item_quantity' item.product.pk %}"><i class="fa-solid fa-square-minus"></i></a>
+										{{item.quantity}}
+									<a href="{%  url 'ecommerce:add_single_product_to_cart' item.product.pk %}"><i class="fa-solid fa-square-plus"></i></a>
+								</td>
+								<td>
+									{% if item.product.price_sale %}
+										<s>${{item.product.price_regular}}</s>
+									{% else %}
+										<p>n/a</p>
+									{% endif %}
+									
+								</td>
+								<td>
+									{% if item.product.price_sale %}
+										${{item.product.price_sale}}
+									{% else %}
+										<p>n/a</p>
+									{% endif %}
+								</td>
+								<td>
+									${{item.get_item_total}} 
+								</td>
+								<td>
+									{{item.get_total_item_weight}}
+								</td>
+								<td>
+									<a href="{% url 'ecommerce:remove_order_item_from_cart' item.pk %}"><i class="fa-solid fa-trash-can"></i></a>
+								</td>
+							</tr>
+
+						{% endfor %}
+							</table>
+
+					</div>
+					{{items}}
+					<hr>
+					
+				</div>
+
+				<div class="col-md-3 p-3">
+					<div class="card">
+						<table class="table">
+				
+							<tr><td><b>tax: </b><span class="float-end">${{order.get_tax_rate}}</span></td></tr>
+							<tr><td><b>coupon deduction: </b><span class="float-end"><s>dsds</s></span></td></tr>
+							<tr><td><b>shipping: </b><span class="float-end">${{order.get_shipping_rate}}</span></td></tr>
+							<tr><td><b>grandtotal: </b><span class="float-end">${{order.get_grand_total}}</span></td></tr>
+							<tr><td><a class="btn btn-primary  " style="width: 100%;" href="{% url 'ecommerce:process_payment' user.pk %}">Proccess payment</a></td></tr>
+							<tr><td>{{form.render}}</td></tr>
+
+
+
+	
+						</table>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+
+		<br>
+		<br>
+
+
+	{% endblock %}	}

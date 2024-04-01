@@ -1,0 +1,31 @@
+{% include 'ds_mp_app/header.html' %}
+{% load thumbnail %}
+{% block content %}
+	<div class="container">
+
+				<div class="row g-2">
+					<div class="col-lg-12">
+						<div class="card p-2 ">
+							<h4>Request requests</h4>
+
+
+
+							{% for refund_request in refund_requests %}
+
+
+								<p><a href="{% url 'ds_mp_app:refund_request' refund_request.pk %}">{{refund_request}}</a> | 
+								{{refund_request.date_requested}} |
+								{{refund_request.get_refund_request_status_display}}
+</p>
+								<hr>
+
+							{% endfor %}
+							
+						</div>
+					</div>
+					
+	
+				</div>
+	
+	</div>
+{% endblock %}

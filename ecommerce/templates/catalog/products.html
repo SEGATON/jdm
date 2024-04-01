@@ -1,0 +1,66 @@
+{% extends 'django_experiments_app/base.html' %}
+{% block content %}
+{% if messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+<ul class="messages">
+{% for message in messages %}
+<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+<div class="container">
+<div class="row">	
+<div class="col-lg-12">
+{% include 'components/breadcrumbs.html' %}
+</div>		
+</div>
+</div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-2">
+{% include 'catalog/categories/categories.html' %}
+{% include 'components/search_form.html' %}
+{% include 'components/sidebar_filters_form.html' %}
+</div>
+<div class="col-md-7">
+<p><b>Showing: </b> 
+({{products.count}}) products</p>
+<div class="row">			
+{% for obj in f.qs %}
+<div  class="col-md-3">			    
+<div class="card products_card">				    	
+<div id="likes_btns_box">
+{% if user.is_authenticated %}							    		
+<form action="{% url 'ecommerce:like_product' obj.pk %}" method="POST">
+{% csrf_token %}
+{% if liked %}
+<button name="product_id" class="like_btn" value="{{obj.pk}}"><i class="fa-solid fa-heart"></i></button>
+{% else %}
+<button  name="product_id" class="like_btn" value="{{obj.pk}}"><i class="fa-regular fa-heart"></i></button>
+{% endif %}
+<b>({{obj.likes.count}})</b>Likes
+</form>
+{% endif %}
+</div>
+{% load thumbnail %}
+<a href="{{obj.get_absolute_url}}"><img src="{% thumbnail obj.featured_image 500x500 crop %}" class="img-fluid"></a>
+<a href="{{obj.get_absolute_url}}" class="catalog_product_link">{{obj.title}}</a>
+<p><a href="{{brand.get_absolute_url}}">{{obj.brand}}</a></p>
+{% if user.is_authenticated %}
+{{obj.price_sale}} - ${{obj.price_regular}}
+{% else %}
+<p>Please <a href="">login</a> to see prices</p>
+{% endif %}
+<form action="{% url 'ecommerce:add_single_product_to_cart' obj.pk %}" method="POST">
+{% csrf_token %}
+</form>				  
+</div>
+</div>
+{% endfor %}				   
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

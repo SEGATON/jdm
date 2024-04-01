@@ -1,0 +1,12 @@
+{% if user.is_authenticated %}
+	<hr>
+	{% if product.price_sale %}
+		<s>${{product.price_regular}}</s>
+		${{product.price_sale}} 
+	{% else %}
+		${{product.price_regular}}
+	{% endif %}
+<hr>
+{% else %}
+	Please login to see prices
+{% endif %}

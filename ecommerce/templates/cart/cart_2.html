@@ -1,0 +1,9 @@
+{{order.user}}
+
+	{% for item in order.order_items.all %}
+
+	<a href="{%  url 'ecommerce:decrement_cart_item_quantity' item.product.pk %}">-</a>
+		{{item.quantity}}
+	<a href="{%  url 'ecommerce:increment_cart_item_quantity' item.product.pk %}">+</a>
+
+{% endfor %}

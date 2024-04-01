@@ -1,0 +1,53 @@
+
+	<select name="add_single_product_to_cart_qty" class="add_single_product_to_cart_qty" id="add_single_product_to_cart_qty">
+
+
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+
+
+	</select>
+
+	<button value="{{product.id}}" class="add_single_product_to_cart" id="add_product" >add to cart</button>
+
+
+
+ 
+
+<script type="text/javascript">
+	
+	$(document).on('click', '#add_product', function(e){
+
+		e.preventDefault();
+
+		$.ajax({
+
+			type: 'POST',
+
+			url: "{% url 'cart:add_product' %}",
+
+			data: {
+				product_id: $('#add_product').val(),
+				product_qty: $('#add_single_product_to_cart_qty option:selected').text(),				
+				csrfmiddlewaretoken: '{{csrf_token}}',
+				action: 'post'
+			},
+
+			success: function(json){
+				document.getElementById("cart_quantity").textContent = json.qty
+				location.reload();
+			},
+
+			error: function(xhr, errmsg, err){
+				
+			}
+
+		});
+
+	})
+
+
+</script>

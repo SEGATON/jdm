@@ -1,0 +1,43 @@
+{% include 'template_parts/header.html' %}
+	{% block content %}
+		<table class="table-bordered">
+			<tr>
+				<td>{% load thumbnail %}
+					<img src="{% thumbnail user.profile.profile_photo 70x70 crop %}" class="border_radius_sm">
+				
+				</td>
+				<td>
+					{{user}}
+				</td>
+			</tr>
+
+
+
+			<tr>
+				<td>
+					
+				{{user.profile.website_url}}<br>
+				{{user.profile.twitter}}<br>
+				{{user.profile.facebook}}<br>
+				{{user.profile.youtube}}<br>
+				{{user.profile.instagram}}<br>
+				</td>
+				<td>
+					{{user.profile.biography}}
+				</td>
+			</tr>
+
+
+
+
+		</table>
+
+
+	{% endblock %}
+
+
+
+
+
+
+

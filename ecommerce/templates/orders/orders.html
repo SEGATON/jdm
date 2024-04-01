@@ -1,0 +1,67 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+
+
+
+
+		<hr>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 p-3">
+					<h4>orders</h4>
+					<hr>
+				
+
+
+					<table class="table">
+
+						<thead>
+							<tr>
+							
+								
+								<td>order #</td>
+								<td>full name</td>
+								<td>date created</td>
+								<td>status</td>
+								<td> </td>
+							
+							</tr>
+						</thead>
+						{% for order_detail in orders.all %}
+					
+							<tr>												
+
+								<td>
+									<a href="{% url 'ecommerce:order' order_detail.pk %}">{{order_detail.id}}</a>
+								</td>
+
+								<td>
+									<a href="{% url 'ecommerce:order' order_detail.pk %}">{{order_detail.user.first_name}} {{order_detail.user.last_name}}</a>
+								</td>
+								
+								</td>
+								
+								<td>
+									<a href="{% url 'ecommerce:order' order_detail.pk %}">{{order_detail.date_created}}</a>
+								</td>
+
+								<td>
+									<span class="badge text-bg-danger">{{order_detail.get_order_status_display}}</span>
+								</td>
+
+								<td>
+								
+								</td>
+							</tr>
+
+						{% endfor %}
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+
+		<br>
+		<br>
+	{% endblock %}	}

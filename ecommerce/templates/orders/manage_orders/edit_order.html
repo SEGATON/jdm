@@ -1,0 +1,42 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<h4>edit order</h4>
+					<hr>
+					<table class="table">
+						<form method="POST">
+							{% csrf_token %}
+
+							<tr>
+								<td>{{edit_order_form.order_items.label}}</td>
+								<td>{{edit_order_form.order_items}}</td>
+							</tr>
+
+							<tr>
+								<td>{{edit_order_form.address_billing.label}}</td>
+								<td>{{edit_order_form.address_billing}} | <a href="">add billing address </a>
+								</td>
+								
+							</tr>
+
+							<tr>
+								<td>{{edit_order_form.address_shipping.label}}</td>
+								<td>{{edit_order_form.address_shipping}} | <a href="">add shipping address</a>
+								</td>
+								
+							</tr>
+
+							<tr>
+								<td>{{edit_order_form.payment.label}}</td>
+								<td>{{edit_order_form.payment}} | <a href="">add payment</a> </td>
+							</tr>
+
+							<tr><td><button>Submit</button></td></tr>
+						</form>
+					</table>
+				</div>
+			</div>
+		</div>
+	{% endblock %}	}

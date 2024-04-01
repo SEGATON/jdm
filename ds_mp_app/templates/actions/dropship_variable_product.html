@@ -1,0 +1,18 @@
+<div class="col-lg-12">
+	<form action="{% url 'ds_mp_app:dropship_single_product' product.slug %}" method="POST">
+		{% csrf_token %}
+		<select 
+			name="qty" 
+			class="add_single_product_to_cart_qty" 
+			id="qty">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+		</select>									
+
+		<button id="dropship_btn_lg">dropship</button>
+	</form>
+
+</div>

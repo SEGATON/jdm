@@ -1,0 +1,21 @@
+
+{% load mptt_tags %}
+<h5>Categories</h5>
+<hr>
+
+<ul class="ecommerce_categories">  
+      {% recursetree ecommerce_categories %}
+        <li>
+            <a href="{{node.get_absolute_url}}">{{ node.title }}</a>
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+
+</ul>
+
+
+

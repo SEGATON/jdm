@@ -1,0 +1,328 @@
+#map {
+  height: 100%;
+}
+
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */
+html{
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman';
+    background: #000;
+}
+.django_experiments_app_body_bg{
+  background: #000;
+  height: 100%;
+}
+.kokoyo{
+  padding: 0;
+  margin: 0;
+}
+.badge-attention{
+  background: green;
+  color:white;
+  padding: 3px 10px;
+  border-radius: 3px;
+  text-transform: capitalize;
+}
+.badge-canceled{
+    background: red;
+  color:white;
+  padding: 3px 10px;
+  border-radius: 3px;
+  text-transform: capitalize;
+}
+.badge-pending{
+    background: orange;
+  color:white;
+  padding: 3px 10px;
+  border-radius: 3px;
+  text-transform: capitalize;
+}
+a{
+	color: #cfff04;
+	font-weight: 900;
+}
+.product_list_li{
+  font-size: 10px;
+}
+b{
+  font-weight: bold;
+}
+.font_weight_none{
+  font-weight: 300;
+}
+.border_right{
+  border-right: 1px solid #ddd;
+}
+.breaadcrumb_a{
+  font-size: 10px;
+}
+hr{
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #000;
+}
+h1,h2,h3,h4,h5,h6{
+  font-weight: 600;
+    padding: 0;
+  margin: 0;
+}
+.breadcrumb {
+    --bs-breadcrumb-padding-x: 0;
+    --bs-breadcrumb-padding-y: 0;
+    --bs-breadcrumb-margin-bottom: 1rem;
+    --bs-breadcrumb-bg: ;
+    --bs-breadcrumb-border-radius: ;
+    --bs-breadcrumb-divider-color: var(--bs-secondary-color);
+    --bs-breadcrumb-item-padding-x: 0.5rem;
+    --bs-breadcrumb-item-active-color: var(--bs-secondary-color);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin-top: 3px;
+    margin-bottom: 0;
+    font-size: var(--bs-breadcrumb-font-size);
+    list-style: none;
+    background-color: var(--bs-breadcrumb-bg);
+    border-radius: var(--bs-breadcrumb-border-radius);
+}
+.breadcrumb li {
+  font-size: 10px;
+}
+.breadcrumb li a {
+  font-size: 10px;
+}
+p{
+  font-size: 12px ;
+}
+.border_radius_sm{
+  border-radius: 5px;
+}
+.width_100_percent{
+  width: 100%;
+}
+ .persons_table  tr td{
+      padding: 0;
+      margin: 0;
+    }
+    .persons_table_head{
+        background: #000;
+        color: #00ff2a;
+      }
+
+      #navigation{
+        background: #111;
+        border-bottom: 1px solid #000;
+         color: #03fc24;
+         box-shadow: 3px 0px 22px 1px #000;
+         width: 100%;
+         border-bottom: 1px solid  #086300;
+         position: fixed;
+      }
+      #navigation a{
+        color: #03fc24;
+      }
+
+     .query_featured_image{
+      width:100%;
+     } 
+
+     .categories_menu{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+     }
+     .categories_menu li{
+
+     }
+     .categories_menu li a {
+      font-size: 12px;
+      color: black;
+     }
+     .query_profile_image{
+      border-radius: 50%;
+     }
+     .query_title{
+      font-size: 20px;
+      color: black;
+     }
+     .browse_queries_title{
+      color: black;
+     }}
+
+.table .order_items_table tr td{
+  padding-top: 10px;
+}
+
+
+
+
+.main_footer{
+  height: 500px;
+}
+
+
+
+
+.filler{
+  height: 30px;
+}
+
+
+
+
+/**********************************/
+.form-control{
+  margin-bottom: 3px;
+}
+.login_form_table tr td{
+  padding: 0;
+  border:none;
+}
+.login_form_card{
+  margin: 200px 0;
+  padding: 20px;
+}
+.login_btn{
+  background: #000;
+  color: white;
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.login_btn:hover{
+  background: #000;
+  color: white;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.f-btn{
+  background: #1877f2;
+  color: white;
+  width: 100%;
+  margin-bottom: 3px;
+}
+.f-btn:hover{
+  background: #1877f2;
+  color: white;
+  width: 100%;
+  margin-bottom: 3px;
+}
+.g-btn{
+  background: #ea4335;
+  color: white;
+  width: 100%;
+  margin-bottom: 3px;
+}
+.g-btn:hover{
+  background: #ea4335;
+  color: white;
+  width: 100%;
+  margin-bottom: 3px;
+}
+.t-btn{
+  background: #1da1f2;
+  color: white;
+  width: 100%;
+  margin-bottom: 3px;
+}
+.t-btn:hover{
+  background: #1da1f2;
+  color: white;
+  width: 100%;
+  margin-bottom: 3px;
+}
+/**********************************/
+
+
+
+
+
+
+
+
+
+
+
+/************** cannabis_db styles starts here ******************************/
+
+.title_heading{
+color: #03fc24;
+  padding: 0;
+  margin: 0;
+}
+.headline{
+color: #03fc24;
+}
+p{
+  padding: 0;
+  margin: 0;
+  color: #0fb800;
+}
+
+hr{
+  border-top:1px solid #000;
+  padding: 0;
+  margin: 0;
+}
+#strain_type_badge_HYBRID{
+  background: green;
+  color: #FFFFFF;
+  padding: 3px 10px;
+  font-size: 12px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+#strain_type_badge_SATIVA{
+  background: green;
+  color: #FFFFFF;
+  padding: 3px 10px;
+  font-size: 12px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+#strain_type_badge_INDICA{
+  background: #26c92e;
+  color: #FFFFFF;
+  padding: 3px 10px;
+  font-size: 12px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+.feeling_desc{
+  font-size: 10px;
+  color: #666;
+}
+.review_rating_card{
+  margin: 5px 0px;
+}
+.review_rating_card_header{
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #000;
+}
+.review_rating_card_body{
+  padding: 0;
+  margin: 0;
+}
+.review_rating_card_footer{
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #000;
+}
+.review_rating_card p {
+  font-size: 12px;
+    padding: 0;
+  margin: 0;
+}
+/************** cannabis_db styles ends here ******************************/
+
+.card {
+	background: #111;
+}

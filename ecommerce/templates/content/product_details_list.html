@@ -1,0 +1,115 @@
+
+
+	<div class="row">
+		<div class="col-lg-12">
+		<h5 class="product_details_heading pa" id="openy">Product details list
+
+
+
+			
+
+
+
+		</h5>
+		<div id="drawer">
+		<ul class="product_details_list ">
+		{% for product_details_list_item in product.product_details_list.product_details_list_items.product_details_list_items.all %}
+			<li class="list_style_none li_lbl"><b>{{product_details_list_item.title}}</b></li>
+			<li><p>{{product_details_list_item.details_description|safe}}</p></li>
+		{% endfor %}
+	</ul>
+</div>
+</div>
+	</div>
+
+
+<style type="text/css">
+	#drawer{
+		display: none;
+	}
+	.pa {
+  position: relative;
+  padding-left: 1em;
+}
+
+.pa::before {
+font-family: "Font Awesome 5 Free";
+   content: "\f107";  display: block;
+  position: absolute;
+  transition: transform .5s ease;
+  transform: rotate(0);
+  right: 10px;
+}
+
+.rotate.pa::before {
+  transform: rotate(180deg);
+}
+</style>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+
+
+		$("#openy").click(function(){
+			
+			$("#drawer").slideToggle("slow");
+			$('.pa').toggleClass('rotate');
+			
+
+
+		
+	
+		});
+
+
+
+		
+
+
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

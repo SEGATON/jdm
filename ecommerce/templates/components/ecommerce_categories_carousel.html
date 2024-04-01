@@ -1,0 +1,17 @@
+{% for category in ecommerce_categories_widget %}
+	<div class="col-md-2">
+		<div class="ecommerce_category_widget_card">
+			<div class="ecommerce_category_widget_card_img_box">
+				{% load thumbnail %}
+				<a href="{{category.get_absolute_url}}"><img src="{% thumbnail category.category_cover_image 200x280 crop %}" class="img-fluid"></a>
+				
+			</div>
+			<div class="ecommerce_category_widget_card_title_box">
+				<p class="ecommerce_category_widget_card_title_box_heading">{{category}}</p>
+			</div>
+		
+		</div>
+	</div>
+{% endfor %}
+
+

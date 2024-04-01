@@ -1,0 +1,81 @@
+
+{% load cart_template_tags  %}
+
+
+
+
+<nav class="navbar navbar-expand-lg bluey fixed-top">
+  <div class="container-fluid">
+<b>
+<button class="btn yellow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-bars"></i></button><a  class="logo_link" href="{% url 'ds_mp_app:front_page' %}"><b>DSMP</b> </a></b><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+<li class="nav-item"><a class="nav-link" href="{% url 'ds_mp_app:products' %}">Products</a></li>
+
+					{% if user.is_authenticated %}
+					
+			
+						<li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
+
+
+						<li class="nav-item"><a class="nav-link" href="{% url 'postman:inbox' %}">Messages</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'postman:archives' %}">archives</a></li>
+						
+
+					{% else %}
+													
+
+
+						<li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}" id="become_a_dropshipper_button">Become a dropshipper</a></li>
+					
+					{% endif %}
+
+					
+				
+					<li class="nav-item"><a class="nav-link" href="{% url 'ds_mp_app:orders' %}">Orders</a></li>
+					{% if request.user.is_authenticated %}
+					<li class="nav-item"><a class="nav-link" href="{% url 'ds_mp_app:cart' %}"><i class="fa-solid fa-cart-shopping"></i> ({{request.user|cart_item_count}})</a></li>
+					{% endif %}
+
+<li class="nav-item"><a class="nav-link" href="{% url 'ds_mp_app:refund_requests' %}">Refund requests</a></li>
+<li class="nav-item"><a class="nav-link" href="{% url 'vendors:front_page' %}">vendors</a></li>
+      </ul>
+          </div>
+  </div>
+</nav>
+
+
+<div class="filler"></div>
+
+
+
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h6 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+    	{% if user.is_authenticated %}
+    	Welcome: <a href="{% url 'memberships:profile' %}" class="light_grey_text">{{user}}</a> | <a href="{% url 'account_logout' %}" class="light_grey_text">Logout</a>
+    	{% else %}
+    	<b>Have an account?</b> <a href="{% url 'account_login' %}" class="light_grey_text">Login</a> | <a href="{% url 'account_signup' %}" class="light_grey_text">Create account</a> 
+    	
+    	{% endif %}
+
+    </h6>
+
+
+
+
+
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+
+
+  	{% include 'catalog/categories/categories.html' %}
+
+  </div>
+</div>

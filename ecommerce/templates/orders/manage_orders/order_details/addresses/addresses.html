@@ -1,0 +1,71 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+	<div class="container ">
+		<div class="row">
+			<div class="col-md-2 border_right col_md_2_height_100_pc">
+
+				{% include 'memberships/sidebar_left.html' %}
+
+
+			</div>
+
+			<div class="col-md-10 ">
+				<br>
+			<h5>Addresses</h5>
+			<hr>
+
+				<a href="{% url 'ecommerce:add_address' %}">add address</a> 
+			<hr>
+
+			<br>
+
+
+							<div class="row g-1">
+								<h6>addresses on account</h6>
+								{% for address in addresses %}
+								<div class="col-md-4 p-1">
+									<div class="card p-2">
+										{{address.id}}<br>
+										{{address.user}}<br>
+										{{address.phone_number}}<br>
+										{{address.address_id_name}}<br>
+										{{address.type_of_address}}<br>
+										{{address.street_name_01}}<br>
+										{{address.street_name_02}}<br>
+										{{address.street_city}}<br>
+										{{address.street_state}}<br>
+										{{address.street_zip_code}}<br>
+
+										{{address.default_address}}<br>
+										{{address.date_created}}<br>
+										<hr>
+										<p>
+											<a href="{% url 'ecommerce:edit_address' address.pk %}"><i class="fa-solid fa-pen-to-square"></i> edit address</a> | 
+											<a href="{% url 'ecommerce:delete_address' address.pk %}"><i class="fa-solid fa-trash-can"></i> delete address</a></p>
+								</div>
+								</div>	
+								{% endfor %}
+							</div>
+
+		
+
+			</div>
+
+
+		</div>
+	</div>	
+
+
+	{% endblock %}
+
+
+
+

@@ -1,0 +1,115 @@
+<!-- DROPDOWN VARIATIONS SWATCHES BASE EXAMPLE START HERE -->
+<div class="row">
+<div class="col-lg-12">{% for p_v_type in product.product_variations_set.type_of_variation.all %}
+		<p><b>{{p_v_type.varitaion_type}}</b></p>
+{% endfor %}
+</div>
+</div>
+<div class="row g-2">
+{% for variation in product.product_variations_set.variations.all %}
+<!-- --->
+<!-- --->
+		<div class="col-md-3">
+			<div class="card p-2 variation_product_card">
+				
+				{% load thumbnail %}
+				<a href="{{vriation.get_absolute_url}}"><img src="{% thumbnail variation.featured_image 300x300 crop %}" class="img-fluid border_radius_md"></a>
+			<span class="variation_product_card_details">
+				<a href="{{vriation.get_absolute_url}}">{{variation.product_size_vlu}} {{variation.get_product_size_lbl_display}} </a>
+				<p>${{variation.price_regular}}</p>
+			</span>
+			</div>
+		</div>
+<!-- --->
+<!-- --->
+{% endfor %}
+</div>
+<!-- DROPDOWN VARIATIONS SWATCHES BASE EXAMPLE ENDS HERE -->
+<!---------------------------------------------------------------------------------------------->
+<!-- DROPDOWN VARIATIONS MENU BASE EXAMPLE START HERE -->
+<!-- DROPDOWN VARIATIONS MENU BASE EXAMPLE ENDS HERE -->
+<form action="{% url 'ecommerce:add_variation_product_to_cart' product.pk %}" method="POST">
+
+
+
+
+
+
+
+	{% csrf_token %}
+
+
+
+
+
+		<select name="add_variation_product_to_cart">
+			{% for variation in product.product_variations_set.variations.all %}
+					<option>
+						<div class="col-md-2 p-1">																							
+							<div class="card p-2 variation_product_card">
+								<a href="{{vriation.get_absolute_url}}">{{variation.title}}</a>
+								{% load thumbnail %}
+								<a href="{{vriation.get_absolute_url}}"><img src="{% thumbnail variation.featured_image 300x300 crop %}" class="img-fluid"></a>
+								
+								{{variation.price_regular}}
+							</div>												
+					</div>
+				</option>
+			{% endfor %}
+		</select>
+
+
+
+
+	<select name="add_single_product_to_cart_qty" class="add_single_product_to_cart_qty" id="add_single_product_to_cart_qty">
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+	</select>
+
+
+		
+	<button  class="add_variation_product_to_cart" id="add_variation_product_to_cart" >add to cart</button>
+</form>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

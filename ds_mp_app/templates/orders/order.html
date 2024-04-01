@@ -1,0 +1,138 @@
+{% include 'ds_mp_app/header.html' %}
+{% load thumbnail %}
+{% block content %}
+	<div class="container">
+
+				<div class="row g-2">
+					<div class="col-lg-12">
+						<div class="card p-2 ">
+						<ul class="help_with_order_menu">
+							<li><a href=""><i class="fa-solid fa-print"></i> print invoice</a></li>
+							<li><a href=""><i class="fa-solid fa-box-archive"></i> add to archive</a></li>
+							<li><a href=""><i class="fa-solid fa-circle-question"></i> help</a></li>
+							<li><a href="{% url 'ds_mp_app:request_refund' order.pk %}"><i class="fa-solid fa-rotate-left"></i> request refund</a></li>
+						</ul>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card p-3 order_details_card">
+							<h5>order details</h5>
+							<br>
+							<ul class="order_details_list">
+								<li><b>Order #: </b></li>
+								<li><b>Email: </b>{{order.user.email}}</li>
+								<li><b>Name on order: </b>{{order.user.first_name}} {{order.user.last_name}}</li>
+								<li><b>Date ordered: </b>{{order.date_created}}</li>
+							</ul>
+							<hr>
+							<br>
+							<a href="">Edit order details</a>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card p-3 order_details_card">
+							<h5>order status</h5>
+							<br>
+							
+							
+							
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card p-3 order_details_card">
+							<h5>billing address</h5>
+							<br>
+							<ul class="address_list">
+								{% if order.billing_address %}							
+										<li>{{order.billing_address.street_name_01}}</li>
+										<li>{{order.billing_address.street_name_02}}</li>
+										<li>{{order.billing_address.street_city}}</li>
+										<li>{{order.billing_address.street_state}}</li>
+										<li>{{order.billing_address.street_zip_code}}</li>
+								{% endif %}
+							</ul>
+							<br>
+							<hr>
+							<br>
+							<a href="" >Change billing address</a>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card p-3 order_details_card">
+							<h5>shipping address</h5>
+							<br>
+							<ul class="address_list">
+								{% if order.shipping_address %}							
+										<li>{{order.shipping_address.street_name_01}}</li>
+										<li>{{order.shipping_address.street_name_02}}</li>
+										<li>{{order.shipping_address.street_city}}</li>
+										<li>{{order.shipping_address.street_state}}</li>
+										<li>{{order.shipping_address.street_zip_code}}</li>
+								{% endif %}
+							</ul>
+							<br>
+							<hr>
+							<br>
+							<a href="">Change shipping address</a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="card p-3 order_details_card">
+							<h5>payment</h5>
+							<br>
+							<ul class="address_list">
+								{% if order.payment %}
+										<li>{{order.payment.first_name}}</li>
+										<li>{{order.payment.last_name}}</li>
+										<li>{{order.payment.payment_method}}</li>
+										<li>{{order.payment.card_number}}</li>
+										<li>{{order.payment.expiration_date}}</li>
+										<li>{{order.payment.security_code}}</li>
+										<li>{{order.payment.zip_code}}</li>
+										<li>{{order.payment.card_type}}</li>
+								{% endif %}
+							</ul>
+							<br>
+							<hr>
+							<br>
+							<a href="">Change payment method</a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="card p-3 order_details_card">
+							<table class="table table-hover order_item_table">
+								<thead>
+									<tr>
+										<td></td>
+										<td><b>Product title</b></td>
+										<td><b>SKU</b></td>
+										<td><b>QTY</b></td>
+										<td><b>Price regular</b></td>
+										<td><b>Price sale</b></td>
+										<td><b><i class="fa-solid fa-xmark"></i></b></td>
+									</tr>
+								</thead>
+								{% for order_item in order.order_items.all %}
+								<tbody>
+									<tr>
+										<td>
+											<a href="{{order_item.order_item.get_absolute_url}}"><img src="{% thumbnail order_item.order_item.featured_image 30x30 crop %}" class="img-fluid" style="border-radius: 4px;"></a>
+										</td>
+										<td>
+											<a href="{{order_item.order_item.get_absolute_url}}">{{order_item.order_item.title}}</a>
+										</td>
+										<td>{{order_item.order_item.product_SKU}}</td>
+										<td>{{order_item.order_item_quantity}}</td>
+										<td>${{order_item.order_item.price_regular}}</td>
+										<td>{% if order_item.order_item.price_sale %}${{order_item.order_item.price_sale}}{% endif %}</td>
+										<td><i class="fa-solid fa-trash-can"></i></td>
+									</tr>
+								</tbody>
+								{% endfor %}
+							</table>
+						</div>
+					</div>
+				</div>
+	
+	</div>
+{% endblock %}

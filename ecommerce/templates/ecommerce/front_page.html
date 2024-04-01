@@ -1,0 +1,331 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+
+
+ 
+
+
+
+
+{% include 'components/filters.html' %}
+
+
+{%  if user.is_authenticated %}
+		<div id="category_banner">
+			
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+		
+		</div>
+		<div class="col-md-8">
+			<div class="row g-3">
+				<div class="col-lg-12">
+				<p class="white_text padding_0"><b>welcome back:</b><i> {{user.first_name}}</i></p>
+				<h3 class="white_text padding_0">Selected categories for you</h3>
+		</div>
+					{% include 'components/ecommerce_categories_carousel.html' %}
+			
+
+			</div>
+		</div>
+		<div class="col-md-2">
+		
+		</div>
+	</div>
+</div>
+
+
+		</div>
+
+
+
+		{% else %}
+
+
+<div id="banner_image">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2">
+				
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						
+						<div class="col-lg-12">
+								<div class="row">
+								
+									<div class="col-lg-12">
+
+
+											<div id="banner_button_box">
+												<h1 id="banner_heading">Your one-stop dropship marketplace.</h1>
+												<h3 id="banner_subheading">Over 100,000 products from thousands of reliable suppliers to choose from.</h3>
+												<br><br>
+													<a href="" id="start_dropshipping_btn">Start dropshipping</a>
+											</div>
+									</div>
+								
+								</div>
+						</div>
+				
+					</div>
+				</div>
+				<div class="col-md-2">
+				
+				</div>
+			</div>
+		</div>
+</div>
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-2">
+					
+					</div>
+					<div class="col-md-8">
+			<div class="row">
+
+
+
+<h5>featured</h5>
+
+	{% for product in products %}
+		{% if product.product_is_featured %}
+				
+			
+				    <div  class="col-md-2">
+				    
+				    <div class="card products_card">
+				        	
+						        
+					        {% load thumbnail %}
+					        <a href="{{product.get_absolute_url}}"><img src="{% thumbnail product.featured_image 500x500 crop %}" class="img-fluid"></a>
+					        <a href="{{product.get_absolute_url}}" class="catalog_product_link">{{product.title}}</a>
+					        {% if user.is_authenticated %}
+									        ${{product.price_sale}} - ${{product.price_regular}}
+									        {% else %}
+													<p>Please <a href="">login</a> to see prices</p>
+								{% endif %}
+								<form action="{% url 'ecommerce:add_single_product_to_cart' product.pk %}" method="POST">
+									{% csrf_token %}
+						
+								</form>
+				    
+				  	</div>
+
+				       </div>
+					{% endif %}
+	{% endfor %}
+				   
+		</div>
+					</div>
+					<div class="col-md-2">
+					
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-2">
+					
+					</div>
+					<div class="col-md-8">
+			<div class="row">
+
+<h5>bestsellers</h5>
+
+	{% for product in products %}
+		{% if product.product_is_bestseller %}
+				
+			
+				    <div  class="col-md-2">
+				    
+				    <div class="card products_card">
+				        	
+						        
+					        {% load thumbnail %}
+					        <a href="{{product.get_absolute_url}}"><img src="{% thumbnail product.featured_image 500x500 crop %}" class="img-fluid"></a>
+					        <a href="{{product.get_absolute_url}}" class="catalog_product_link">{{product.title}}</a>
+					        {% if user.is_authenticated %}
+									        {{product.price_sale}} - ${{product.price_regular}}
+									        {% else %}
+													<p>Please <a href="">login</a> to see prices</p>
+								{% endif %}
+								<form action="{% url 'ecommerce:add_single_product_to_cart' product.pk %}" method="POST">
+									{% csrf_token %}
+								
+								</form>
+				    
+				  	</div>
+
+				       </div>
+					{% endif %}
+	{% endfor %}
+				   
+		</div>
+					</div>
+					<div class="col-md-2">
+					
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-2">
+					
+					</div>
+					<div class="col-md-8">
+			<div class="row">
+
+<h5>On sale</h5>
+	{% for product in products %}
+		{% if product.product_is_on_sale %}
+				
+			
+				    <div  class="col-md-2">
+				    
+				    <div class="card products_card">
+				        	
+						        
+					        {% load thumbnail %}
+					        <a href="{{product.get_absolute_url}}"><img src="{% thumbnail product.featured_image 500x500 crop %}" class="img-fluid"></a>
+					        <a href="{{product.get_absolute_url}}" class="catalog_product_link">{{product.title}}</a>
+					        {% if user.is_authenticated %}
+									        {{product.price_sale}} - ${{product.price_regular}}
+									        {% else %}
+													<p>Please <a href="">login</a> to see prices</p>
+								{% endif %}
+								<form action="{% url 'ecommerce:add_single_product_to_cart' product.pk %}" method="POST">
+									{% csrf_token %}
+								
+								</form>
+				    
+				  	</div>
+
+				       </div>
+					{% endif %}
+	{% endfor %}
+				   
+		</div>
+					</div>
+					<div class="col-md-2">
+					
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-2">
+					
+					</div>
+					<div class="col-md-8">
+			<div class="row">
+<h5>High sell through</h5>
+
+	{% for product in products %}
+		{% if product.high_sell_through %}
+				
+			
+				    <div  class="col-md-2">
+				    
+				    <div class="card products_card">
+				        	
+						        
+					        {% load thumbnail %}
+					        <a href="{{product.get_absolute_url}}"><img src="{% thumbnail product.featured_image 500x500 crop %}" class="img-fluid"></a>
+					        <a href="{{product.get_absolute_url}}" class="catalog_product_link">{{product.title}}</a>
+					        {% if user.is_authenticated %}
+									        {{product.price_sale}} - ${{product.price_regular}}
+									        {% else %}
+													<p>Please <a href="">login</a> to see prices</p>
+								{% endif %}
+								<form action="{% url 'ecommerce:add_single_product_to_cart' product.pk %}" method="POST">
+									{% csrf_token %}
+						
+								</form>
+				    
+				  	</div>
+
+				       </div>
+					{% endif %}
+	{% endfor %}
+				   
+		</div>
+					</div>
+					<div class="col-md-2">
+					
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+	{% endblock %}

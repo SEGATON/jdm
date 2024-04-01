@@ -1,0 +1,35 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1">
+		
+		</div>
+				<div class="col-md-1">
+		
+		</div>
+
+		<div class="col-md-9">
+		<table class="table filters_table p-0" style="border: none;">
+		    <form method="get">
+		        <tr>
+
+			        <td>{{ f.form.price_sale.label }}{{ f.form.price_sale }}</td>
+			        <td>{{ f.form.price_regular.label }} {{ f.form.price_regular }}</td>
+
+			        <td>{{ f.form.release_year.label }} {{ f.form.release_year }}</td>
+			        <td>{{ f.form.release_year__gt.label }} {{ f.form.release_year__gt }}</td>
+			        <td>{{ f.form.release_year__lt.label }} {{ f.form.release_year__lt }}</td>
+
+			        <td><input type="submit" /></td>
+		    	</tr>
+		        
+		    </form>
+	   </table>
+		</div>
+		<div class="col-md-2">
+		
+		</div>
+	</div>
+</div>
+
+
+{{tf}}

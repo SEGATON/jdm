@@ -1,0 +1,14 @@
+django-allauth==0.54.0
+django-ckeditor==6.5.1
+django-import-export==3.2.0
+easy-thumbnails==2.8.5
+Pillow==9.5.0
+django-bootstrap-modal-forms==3.0.4
+django-localflavor==4.0
+django-filter==23.2
+django-comments-xtd==2.9.9
+django-treebeard==4.7
+django-mptt==0.14.0
+django-social-share==2.3.0 
+django-localflavor==4.0
+django-star-ratings

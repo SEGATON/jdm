@@ -1,0 +1,337 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 p-3"></div>
+				<div class="col-md-3"></div>
+			</div>
+		</div>
+		<hr>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<h4>cart items</h4>
+					<hr>
+					<br>
+					<table class="table ">
+						<thead>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><b>Title</b></td>
+								<td><b>SKU</b></td>
+								<td><b>QTY</b></td>
+								<td><b>Regular price</b></td>
+								<td><b>Sale price</b></td>				
+								<td><b>Item weight total lbs/oz</b></td>
+								<td><b>Item total price/item</b></td>
+								<td>x</td>
+							</tr>
+						</thead>							
+							{% for item in  order.order_items.all %}
+								
+							<tr>
+								<td>
+									{{forloop.counter}}
+								</td>
+								<td>
+									{% load thumbnail %}
+									<a href="{{item.product.get_absolute_url}}"><img src="{% thumbnail item.product.featured_image 50x50 crop %}" class="border_radius_sm"></a>
+									
+								</td>
+								<td>
+									<a href="{{item.product.get_absolute_url}}">{{item.product.title}}</a>
+								</td>
+								<td>
+									<a href="{{item.product.get_absolute_url}}">{{item.product.product_SKU}}</a>
+								</td>
+								<td>
+									
+							{% if item.product %}
+									<a href="{%  url 'ecommerce:decrement_cart_item_quantity' item.product.pk %}"><i class="fa-solid fa-square-minus"></i></a>
+										{{item.quantity}}
+									<a href="{%  url 'ecommerce:add_single_product_to_cart' item.product.pk %}"><i class="fa-solid fa-square-plus"></i></a>
+							{% endif %}
+
+
+
+
+
+								</td>
+								<td>
+									{% if item.product.price_sale %}
+										<s>${{item.product.price_regular}}</s>
+									{% else %}
+										<p>n/a</p>
+									{% endif %}
+									
+								</td>
+								<td>
+									{% if item.product.price_sale %}
+										${{item.product.price_sale}}
+									{% else %}
+										<p>n/a</p>
+									{% endif %}
+								</td>
+								
+								<td>
+									{{item.get_total_item_weight}}
+								</td>
+								<td>
+									${{item.get_total_item_cost}}
+								</td>
+								<td>
+									<a href="{% url 'ecommerce:remove_order_item_from_cart' item.pk %}"><i class="fa-solid fa-trash-can"></i></a>
+								</td>
+							</tr>
+							
+						{% endfor %}
+
+<!-- ----------------------------------------------------------- VARS -------------------------------------------------------------------------------------->
+
+							{% for item in  order.var_order_items.all %}
+								
+							<tr>
+								<td>
+									{{forloop.counter}}
+								</td>
+								<td>
+									{% load thumbnail %}
+									<a href="{{item.var_product.get_absolute_url}}"><img src="{% thumbnail item.var_product.featured_image 50x50 crop %}" class="border_radius_sm"></a>
+									
+								</td>
+								<td>
+									<a href="{{item.var_product.get_absolute_url}}">{{item.var_product.title}}</a>
+								</td>
+								<td>
+									<a href="{{item.var_product.get_absolute_url}}">{{item.var_product.product_SKU}}</a>
+								</td>
+								<td>
+									
+							{% if item.var_product %}
+									<a href="{%  url 'ecommerce:decrement_cart_item_quantity' item.var_product.pk %}"><i class="fa-solid fa-square-minus"></i></a>
+										{{item.quantity}}
+									<a href="{%  url 'ecommerce:add_single_product_to_cart' item.var_product.pk %}"><i class="fa-solid fa-square-plus"></i></a>
+							{% endif %}
+
+
+
+
+
+								</td>
+								<td>
+									{% if item.var_product.price_sale %}
+										<s>${{item.var_product.price_regular}}</s>
+									{% else %}
+										<p>n/a</p>
+									{% endif %}
+									
+								</td>
+								<td>
+									{% if item.var_product.price_sale %}
+										${{item.var_product.price_sale}}
+									{% else %}
+										<p>n/a</p>
+									{% endif %}
+								</td>
+								<td>
+									${{item}} 
+								</td>
+								<td>
+									{{item.get_total_item_weight}}
+								</td>
+								<td>
+									<a href="{% url 'ecommerce:remove_order_item_from_cart' item.pk %}"><i class="fa-solid fa-trash-can"></i></a>
+								</td>
+							</tr>
+							
+						{% endfor %}
+							</table>
+
+
+
+
+							<form action="{% url 'ecommerce:process_coupon' user.pk %}" method="POST">
+								{% csrf_token %}
+								<input type="text" name="coupon_code_tf" id="coupon_code_tf" class="form-control-2" placeholder="Enter coupon/promotion code">
+
+								<button class="btn btn-primary">add coupon</button>
+							</form>
+
+				
+				</div>
+
+				<div class="col-md-3 p-3">
+					<div class="card">
+						<table class="table">
+							<tr>
+								<td>
+									<b>subtotal:</b>
+									<span class="float-end">${{order.get_sub_total}}</span>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<b>tax totals: </b>
+									<span class="float-end">${{order}}</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>coupon deduction: </b>
+									<span class="float-end"><s>dsds</s></span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>shipping: </b>
+									<span class="float-end">${{order.shipping_rate.get_shipping_total}}</span>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<b>grand total: </b>
+									<span class="float-end">${{order}}</span>
+								</td>
+							</tr>
+						
+							<tr>
+								<td>
+									<a style="width: 100%;" class="btn btn-primary " href="{% url 'ecommerce:checkout' user.pk %}">Proceed to checkout</a>
+								</td>
+							</tr>
+
+						</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+
+		<br>
+		<br>
+	{% endblock %}	}

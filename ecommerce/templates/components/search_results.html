@@ -1,0 +1,121 @@
+
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+
+{% include 'components/filters.html' %}
+{% if messages %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+  <button type="button"  data-bs-dismiss="alert" aria-label="Close">x</button>
+</div>
+{% endif %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1">
+
+
+
+		</div>
+		<div class="col-md-2">
+
+			{% include 'components/search_form.html' %}
+
+			{% include 'catalog/categories/categories.html' %}
+
+
+
+
+
+
+
+
+
+{% include 'components/sidebar_filters_form.html' %}
+
+
+
+		
+
+
+		</div>
+		
+		<div class="col-md-7">
+				<p><b>Showing: </b> 
+({{products.count}}) products</p><br><br>
+			<div class="row g-2">
+
+
+
+				
+				    {% for product  in search_querySet %}
+				    <div  class="col-md-2">
+				    
+				    <div class="card">
+				        	<div id="likes_btns_box">
+								    	{% if user.is_authenticated %}
+
+
+								    		
+								    		<form action="{% url 'ecommerce:like_product' product.pk %}" method="POST">
+								    			{% csrf_token %}
+
+
+								    			{% if liked %}
+								    				<button name="product_id" class="" value="{{product.pk}}"><i class="fa-solid fa-heart"></i></button>
+
+								    			{% else %}
+								    				<button  name="product_id" class="" value="{{product.pk}}"><i class="fa-regular fa-heart"></i></button>
+
+
+								    			{% endif %}
+								    			<b>({{product.likes.count}})</b>Likes
+								    		</form>
+								       {% endif %}
+
+</div>
+						        
+					        {% load thumbnail %}
+					        <a href="{{product.get_absolute_url}}"><img src="{% thumbnail product.featured_image 500x500 crop %}" class="img-fluid"></a>
+					        <a href="{{product.get_absolute_url}}">{{product.title}}</a>
+					        {{product.price_sale}} - ${{product.price_regular}}
+									<form action="{% url 'ecommerce:add_single_product_to_cart' product.pk %}" method="POST">
+										{% csrf_token %}
+										<button  class="add_single_product_to_cart" id="add_single_product_to_cart" >dropship</button>
+									</form>
+				    
+				  	</div>
+
+				       </div>
+				    {% endfor %}
+				   
+		</div>
+		</div>
+<div class="col-md-2"></div>
+	</div>
+</div>
+
+
+	{% endblock %}

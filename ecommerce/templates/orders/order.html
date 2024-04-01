@@ -1,0 +1,258 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 p-3">
+					<a href="{% url 'ecommerce:edit_order' order.pk %}"><i class="fa-solid fa-pen-to-square"></i> edit order</a> | 
+					<a href=""><i class="fa-solid fa-print"></i> print invoice</a> |
+					<a href=""><i class="fa-solid fa-box-archive"></i> add to archive</a> | 
+					<a href=""><i class="fa-solid fa-circle-question"></i> help</a>
+
+
+
+
+
+				</div>
+				<div class="col-md-2 p-3">
+					order status 
+					{% if order.order_status == 'pending' %}
+						<span class="float-end badge-pending ">{{order.order_status}}</span>
+					{% endif %}
+
+					{% if order.order_status == 'processing' %}
+						<span class="float-end badge-attention ">{{order.order_status}}</span>
+					{% endif %}
+
+					{% if order.order_status == 'active' %}
+						<span class="float-end badge-attention ">{{order.order_status}}</span>
+					{% endif %}
+
+					{% if order.order_status == 'unshipped' %}
+						<span class="float-end badge-attention ">{{order.order_status}}</span>
+					{% endif %}
+
+					{% if order.order_status == 'shipped' %}
+						<span class="float-end badge-attention ">{{order.order_status}}</span>
+					{% endif %}
+
+					{% if order.order_status == 'canceled' %}
+						<span class="float-end badge-canceled ">{{order.order_status}}</span>
+					{% endif %}
+
+				</div>
+
+			</div>
+		</div>
+		<hr>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 p-3 border_right">
+						<h4>order details:</h4>
+						<hr>
+						<b>order #: </b>{{order.id}}
+						<br>
+						<b>full name: </b>{{order.user.first_name}} {{order.user.last_name}}<br>
+						<b>email: </b>{{order.user.email}}<br>
+						<b>phone: </b>{{order.user.phone_number}}<br>
+						<b>date created: </b>{{order.date_created}}<br>
+				</div>
+				<div class="col-md-3 p-3 border_right">
+					<h4>billing details:</h4>
+					<hr>
+					{% if order.address.billing_address == true %}
+						{{order.address_billing.user.first_name}}
+						{{order.address_billing.user.last_name}}<br>
+						{{order.address_billing.street_name_01}}<br>
+						{{order.address_billing.street_name_02}}<br>
+						{{order.address_billing.street_city}}<br>
+						{{order.address_billing.street_state}}<br>
+						{{order.address_billing.street_zip_code}}<br>
+						{{order.address_billing.phone_number}}<br>
+					{% endif %}
+					<a href="{% url 'ecommerce:edit_order' order.pk %}">change billing address</a>
+				</div>
+				<div class="col-md-3 p-3 border_right">
+					<h4>shipping details:</h4>
+					<hr>
+					{% if order.address.shipping_address == true %}
+						{{order.address_shipping.user.first_name}}
+						{{order.address_shipping.user.last_name}}<br>
+						{{order.address_shipping.street_name_01}}<br>
+						{{order.address_shipping.street_name_02}}<br>
+						{{order.address_shipping.street_city}}<br>
+						{{order.address_shipping.street_state}}<br>
+						{{order.address_shipping.street_zip_code}}<br>
+						{{order.address_shipping.phone_number}}<br>
+					{% endif %}
+					<a href="{% url 'ecommerce:edit_order' order.pk %}">change shipping address</a>
+				</div>
+
+				<div class="col-md-3 p-3 ">
+					<h4>payment details:</h4>
+					<hr>
+					{{order.payment.get_payment_method_display}}<br>
+					{{order.payment.card_number}}<br>
+					{{order.payment.expiration_date}}<br>
+					{{order.payment.security_code}}<br>
+					{{order.payment.zip_code}}<br>
+
+					{{order.payment.card_type}}<br>
+					{{order.payment.set_to_default}}<br>
+
+					<a href="{% url 'ecommerce:add_payment' %}">change payment method</a>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 p-3">
+					<h4>order items</h4>
+					<hr>
+					<br>
+
+
+					<table class="table table-hover table-bordered " id="order_items_table">
+
+						<thead >
+							<tr >
+								<td></td>
+								<td></td>
+								<td>Title</td>
+								<td>SKU</td>
+								<td>QTY</td>
+								<td>Regular price</td>
+								<td>Sale price</td>
+								<td>Item total price</td>
+							</tr>
+						</thead>
+						{% for order_item in order.order_items.all %}
+					
+							<tr>
+								<td>
+									{{forloop.counter}}
+								</td>
+								<td class="text-center">
+									{% load thumbnail %}
+									<a  href="{{order_item.product.get_absolute_url}}"><img class="border_radius_sm" src="{% thumbnail order_item.product.featured_image 30x30 crop %}"></a>
+									
+								</td>
+								<td>
+									<a href="{{order_item.product.get_absolute_url}}">{{order_item.product.title}}</a>
+								</td>
+								<td>
+									<a href="{{order_item.product.get_absolute_url}}">{{order_item.product.product_SKU}}</a>
+								</td>
+								<td>
+									{{order_item.quantity}}
+								</td>
+								<td>
+									${{order_item.product.price_regular}}
+								</td>
+								<td>
+									{% if order_item.sale_price %}
+										${{order_item.product.price_sale}}
+									{% endif %}
+								</td>
+
+								<td>
+									{{order_item}}
+								</td>
+							</tr>
+
+						{% endfor %}
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+		<hr>
+		<div class="order_totals">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 p-3">
+					<h4>order totals</h4>
+					<br>
+
+					<div class="row">
+						<div  class="col-md-3 border_right">
+					<b>subtotal: </b> 
+						</div>
+						<div  class="col-md-3 border_right text-center">
+							
+								<b>tax: </b> ${{order}}  
+						</div>
+						<div  class="col-md-3 text-center border_right">
+							<b>shipping: </b> ${{order}} 
+						</div>
+						<div  class="col-md-3 text-right">
+							<b>grandtotal: </b> 
+						</div>
+					</div>
+				</div>
+
+</div>
+			</div>
+		</div>
+
+
+		<hr>
+			<div class="order_shipping_details">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 p-3">
+					<h4>tracking details</h4>
+<br>
+				<div class="row">
+					<div class="col-md-4">
+						<b>date shipped: </b> 
+						{% if order.date_shipped %}
+							{{order.shipping_rate.date_shipped}}
+						{% else %}
+							order has not yet been shipped.
+						{% endif %}
+					</div>
+					<div class="col-md-4 border_left border_right">
+						<b>carrier: </b>
+						{% if order.date_shipped %}
+							<b>carrier: </b>  <img src="{{order.shipping_rate.carrier.shipping_carrier_logo.url}}" class="img-fluid" width="47">
+						{% else %}
+							no info available
+						{% endif %}
+						
+					</div>
+					<div class="col-md-4 text-right">
+						<b>tracking details: </b> 
+						{% if order.date_shipped %}
+							<a href="{{order.shipping_rate.tracking_number_URL}}">{{order.shipping_rate.tracking_number}}</a> 
+						{% else %}
+							no info available
+						{% endif %}
+					</div>
+				</div>
+<br>
+<hr>
+<br>
+				<div class="row">
+					<div class="col-lg-12">
+							<div id="tracking_updates_bar"></div>
+					</div>
+					<div class="col-lg-12">
+							<div class="row">
+									<div class="col-md-2">update</div>
+							</div>
+					</div>
+				</div>
+</div>
+				</div>
+
+
+			</div>
+		</div>
+		<hr>
+		<br>
+		<br>
+	{% endblock %}	}

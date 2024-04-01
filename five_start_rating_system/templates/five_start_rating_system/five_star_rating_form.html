@@ -1,0 +1,236 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+
+	
+<style type="text/css">
+.rate {
+text-align: left;
+
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#999;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ebbc00;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #ebbc00;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #ebbc00;
+}
+
+.five_star_rating_content_box{
+
+	width: 40%;
+	margin: 100px auto;
+}
+#five_star_rating_system_wrapper{
+	background: #eee;
+	width: 40%;
+	margin: 100px auto;
+
+}
+#five_star_rating_box_outer{
+	width: 100%;
+	height: 65px;
+	background: #ddd;
+	margin: 0 auto;
+
+}
+#five_star_rating_box{
+	width: 21.2%;
+	height: 50px;
+	padding-top:10px;
+
+	margin: 0 auto;
+
+}
+#five_star_rating_comment_box{
+	width: 100%;
+
+}
+#five_star_rating_comment_ta{
+	width: 97.3%;
+	margin: 10px;
+	height: 70px;
+	border-radius: 5px;
+	transition: all .5s;
+	border:1px solid #888;
+	outline: none;
+	padding: 10px;
+	color: #666;
+}
+#five_star_rating_comment_ta:hover{
+	width: 97.3%;
+	margin: 10px;
+	border-radius: 5px;
+
+	
+	border:1px solid #888;
+	outline: none;
+}
+
+#five_star_rating_comment_ta:focus{
+	width: 97.3%;
+	margin: 10px;
+	border-radius: 5px;
+	transition: all .5s;
+	height: 120px;
+	border:1px solid #888;
+}
+#submit_review_btn{
+	margin: 10px;
+	background: blue;
+	color: white;
+	padding:10px;
+	width: 97.3%;
+	text-align: center;
+	border-radius: 5px;
+}
+
+#rating_single{
+	margin-bottom: 10px;
+	border: 1px solid #EEE;
+	padding: 10px;
+	background: #fff;
+}
+#rating_single p {
+	padding: 0;
+
+}
+.rating_single_header{
+	padding: 0;
+	border-bottom: 1px solid #eee;
+	text-align: left;
+}
+#five_star_rating_system_page{
+	background: #fcfcfa;
+}
+#rating_thumb_up{
+	background: none;
+	border: none;
+}
+#rating_thumb_down{
+	background: none;
+	border: none;
+}
+.rating_single_body{
+	margin-top: 20px;
+}
+.che {
+	color: #555;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="five_star_rating_system_page">
+
+
+
+
+
+
+<h4>Leave a review:</h4>
+
+
+
+
+
+
+
+<div class="ratings_content">
+
+
+
+	{% include 'five_start_rating_system/ratings.html' %}
+</div>
+
+
+<div id="five_star_rating_system_wrapper">
+
+
+
+<form action="{% url 'five_start_rating_system:process_review' %}" method="POST">
+{% csrf_token %}
+
+
+<div id="five_star_rating_box_outer">
+	<div id="five_star_rating_box">
+
+	  <div class="rate">
+		<input type="radio" id="star5" name="rate" value="5" />
+		<label for="star5" title="text">5 stars</label>
+
+		<input type="radio" id="star4" name="rate" value="4" />
+		<label for="star4" title="text">4 stars</label>
+
+		<input type="radio" id="star3" name="rate" value="3" />
+		<label for="star3" title="text">3 stars</label>
+
+		<input type="radio" id="star2" name="rate" value="2" />
+		<label for="star2" title="text">2 stars</label>
+
+		<input type="radio" id="star1" name="rate" value="1" />
+		<label for="star1" title="text">1 star</label>
+
+	  </div>
+	</div>
+</div>
+
+
+<div id="five_star_rating_comment_box">
+  <textarea placeholder="Write review..." name="five_star_rating_comment_ta" id="five_star_rating_comment_ta"></textarea>
+</div>
+
+
+
+<div id="">
+	<button id="submit_review_btn">Submit review</button>
+</div>
+
+</form>
+
+</div>
+
+
+
+
+
+
+
+</section>
+
+
+
+{% endblock %}

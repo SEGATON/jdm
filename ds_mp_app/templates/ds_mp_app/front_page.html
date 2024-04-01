@@ -1,0 +1,181 @@
+{% extends 'ds_mp_app/base.html' %}
+	{% block content %}
+<div class="banner">
+  <div class="banner_content_box">
+          <h1 class="large_yellow_h1">
+Select from thousands of products to dropship
+
+
+
+
+
+
+     </h1>
+     <br><br>
+  <a href="" class="big_orange_button">Become a dropshipper</a>
+
+
+{% include 'components/search_products_forms.html' %}
+
+</div>
+</div>
+
+
+
+
+
+<div class="container-fluid">
+      <div class="row">
+         <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-8">
+          <br>
+          <h4><b>Featured products</b></h4>
+          <br>
+          <hr>
+          <br>
+        </div>
+        <div class="col-md-2">
+          
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+              <div class="row">
+                {% for product in products %}
+
+                  {% if product.featured  %}
+                    <div class="col-md-2">
+                
+
+                        {% load thumbnail %}
+          <a href="{{product.get_absolute_url}}"><img src="{% thumbnail product.featured_image 500x500 crop %}" alt="" class="img-fluid rounded_corners_md" /></a>
+              <a href="{{product.get_absolute_url}}">{{product}}</a>
+              <p>{{product.description_short|safe|truncatechars:100}}</p>
+              <p>{{product.price_regular}} {{product.price_sale}}</p>
+                  </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+
+
+{{products}}
+<div class="container-fluid">
+      <div class="row">
+         <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-8 ">
+          <h4><b>Bestseller products</b></h4>
+          <br>
+          <hr>
+          <br>
+        </div>
+        <div class="col-md-2">
+          
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+              <div class="row">
+                {% for product in products %}
+
+                  {% if product.bestseller  %}
+                    <div class="col-md-2">
+                  
+                        {% load thumbnail %}
+      <a href="{{product.get_absolute_url}}"><img src="{% thumbnail product.featured_image 500x500 crop %}" alt="" class="img-fluid rounded_corners_md" /></a>
+          <a href="{{product.get_absolute_url}}">{{product}}</a>
+          <p>{{product.description_short|safe|truncatechars:100}}</p>
+          <p>{{product.price_regular}} {{product.price_sale}}</p>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+
+<hr>
+
+
+<div class="container-fluid">
+
+
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+              <div class="row">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-4 text-center p-3">
+                    <h4>How it works</h4>
+                  </div>
+                  <div class="col-md-4">
+                    
+                  </div>
+              </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 p-3">
+              <div class="row">
+                  <div class="col-md-4">
+                    <div class="card p-3">
+                        <h6 class="text-center">browse our product catalog</h6>
+                        <br>
+                        <hr>
+                            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card p-3">
+                        <h6 class="text-center">submit p.o</h6>
+                        <br>
+                        <hr>
+                            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p> 
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card p-3">
+                        <h6 class="text-center">we'll take care of the rest</h6>
+                        <br>
+                        <hr>
+                            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor </p>
+                    </div>
+                  </div>
+              </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+		 
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+	{% endblock %}

@@ -1,0 +1,82 @@
+{% include 'template_parts/header.html' %}
+	{% block content %}
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2">
+				
+				</div>
+				<div class="col-md-8">
+
+					<div class="row">
+					
+						<div class="col-md-10">
+
+							<h4>{{wishlist.title}} </h4>
+
+							<hr>
+
+							<div class="row">
+								
+
+									<div class="col-lg-12">
+										<a href="{% url 'ecommerce:wishlist' wishlist.pk %}">{{wishlist}}</a> | <a  href="{% url 'ecommerce:delete_wishlist' wishlist.pk  %}" >delete wishlist</a>
+								
+
+										<br>
+
+										wishlist date created: {{wishlist.date_created}} | 
+										wishlist date updated: {{wishlist.date_updated}} | 
+										wishlist description: {{wishlist.description|safe}} | 
+
+										<div class="row">
+
+								{% for product in wishlist.products.all %}
+												<div class="col-md-2">
+													{% load thumbnail %}
+													<a href="{{product.get_absolute_url}}">
+														<img src="{% thumbnail product.featured_image 400x400 crop %}" class="img-fluid ">
+													</a>
+													<a href="{{product.get_absolute_url}}">{{product}}</a><br>
+													{% if product.price_sale %}
+														<s>${{product.price_regular}} </s>
+														   ${{product.price_sale}} 
+													{% else %}
+														${{product.price_regular}}
+													{% endif %}
+
+													<form action="{% url 'ecommerce:add_single_product_to_cart' product.pk %}" method="POST">
+														{% csrf_token %}
+														<button  class="add_single_product_to_cart" id="add_single_product_to_cart" >Add to cart</button>
+													</form>
+
+													<a href="{% url 'ecommerce:remove_item_from_wishlist' product.pk %}">remove item</a>
+												</div>
+											{% endfor %}
+
+										</div>
+
+
+										<hr>
+									</div>
+
+								
+							</div>
+
+
+						</div>
+
+						<div class="col-md-2">
+						
+						</div>
+
+					</div>
+					
+				</div>
+
+				<div class="col-md-2">
+				
+				</div>
+			</div>
+		</div>
+
+	{% endblock %}

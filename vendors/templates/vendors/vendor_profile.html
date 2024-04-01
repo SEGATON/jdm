@@ -1,0 +1,90 @@
+{% include 'ds_mp_app/header.html' %}
+{% load static %}
+{% load thumbnail %}
+
+	{% block content %}
+
+<div class="container">
+	<div class="row g-2">
+			<div class="col-md-3">
+			
+			<div class="card p-1">
+
+
+<img src="{% thumbnail vendor_profile.vendor_logo 200x200 crop %}" class="img-fluid  " id="vendor_logo" >
+
+		<li><a href="">save vendor</</a></li>
+		<li><a href="">follow vendor</a></li>
+		<li><a href="">get notified from vendor</a></li>
+		<li><a href="">report vendor</a></li>
+		<li><a href="">share</a></li>
+		
+		<br>
+		<hr>
+		<br>
+			<li><i class="fa-solid fa-square-phone"></i> {{vendor_profile.vendor_phone}}</li>
+			<li><i class="fa-solid fa-envelope"></i> {{vendor_profile.vendor_email}}</li>
+			<li><i class="fa-solid fa-globe"></i> <a href="">{{vendor_profile.vendor_website_URL}}</a></li>
+		</div>
+	</div>
+		<div class="col-md-9">
+			<div class="card p-2" style="margin-bottom: 7px;">
+				<h3>{{vendor_profile.vendor_title}}</h3>
+				<p>{{vendor_profile.vendor_descripton|safe}}</p>
+				<br>
+				<a href="" id="contact_vendor_btn">Contact vendor</a>
+				<br>
+			</div>
+
+			<div class="card p-2">
+							<div class="row g-1">
+								<h6>Products by {{vendor_profile}}</h6>
+							{% for product in vendor_profile.vendor_products.all %}
+								<div class="col-md-2">
+										<div class="card ">
+											<div class="row">
+											<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+											<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>										
+												<div class="col-lg-12">
+													<span id="save_btn">
+														<a href="" id="save_product">
+															<i class="fa-solid fa-heart"></i>
+														</a>
+													</span>
+													{% load thumbnail %}
+													<a href="{{product.get_absolute_url}}"><img src="{% thumbnail product.featured_image 300x300 crop %}" class="img-fluid"></a>
+												</div>
+												<div class="col-lg-12">
+													<a href="{{product.get_absolute_url}}" id="catalog_product_title">{{product.title|truncatechars:20}}</a>
+												</div>
+												<div class="col-lg-12">
+														{% if user.is_authenticated %}
+													{% if product.price_sale %}
+														<s>{{product.price_regular}}</s>
+														<b>{{product.price_sale}}</b>
+													{% else %}
+														{{product.price_regular}}
+													{% endif %}
+												</div>
+												<div class="col-lg-12">
+													{% load ratings %}
+													{% ratings product %}
+												</div>
+												<div class="col-lg-12">
+								
+												</div>{% else %}
+												<p>Please <a href="{% url 'accounts:login' %}">login</a> to view prices.</p>
+											{% endif %}							
+											</div>
+										</div>
+								</div>
+							{% endfor %}
+							</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+	{% endblock %}

@@ -1,0 +1,44 @@
+{% load comments %}
+{% load comments_xtd %}
+
+
+
+
+  
+{% get_comment_count for article as comment_count %}
+					<div class=" ">
+
+				
+					  {{ comment_count }} opinion{{ comment_count|pluralize }}
+					  {{ comment_count|pluralize:"s," }}
+
+					
+					</div>
+
+
+
+
+<ul class="media-list p-0">
+  {% render_xtdcomment_tree for article allow_flagging allow_feedback show_feedback   %}
+</ul>
+
+
+    {% for article in object_list %}
+    ...
+    {% get_comment_count for book as comment_count %}
+    <p class="date">Published {{ book.publish }}
+      {% if comment_count %}
+      &sdot;&nbsp;{{ comment_count }} comment{{ comment_count|pluralize }}
+      {% endif %}
+    </p>
+    ...
+    {% endfor %}
+
+
+ 
+<div class="comment">
+
+ 
+    {% render_comment_form for article %}
+ 
+</div>

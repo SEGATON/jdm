@@ -1,0 +1,8 @@
+<table class="table">
+<form action="{% url 'ecommerce:search' %}" method="GET">
+	{% csrf_token %}
+	<tr><td class="p-0"><input type="text" name="search_ecommerce_app_tf" id="search_ecommerce_app_tf">
+	<button >Go!</button></td></tr>
+</form>
+
+</table>

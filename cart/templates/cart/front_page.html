@@ -1,0 +1,143 @@
+{% include 'template_parts/header.html' %}
+	{% block content %}
+<div class="filler"></div>
+<div class="container">
+	<div class="row">
+
+		
+		
+				
+				<div class="col-md-8">
+					<h1>Cart</h1>
+
+			<hr>
+					<b>cart items</b>
+					
+					<table class="table">
+						<tr>
+							<td><b>id</b></td>
+							<td><b>thumb</b></td>
+							<td><b>title</b></td>
+							<td><b>qty</b></td>
+							<td><b>r price</b></td>
+							<td><b>s price</b></td>
+							<td><b>-</b></td>
+							<td><b>+</b></td>
+							<td><b>item total</b></td>
+							<td><b>x</b></td>
+
+						</tr>
+										
+						
+						<tr>
+
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							
+						</tr>
+
+					</table>
+
+
+					<table class="table">
+						<tr>
+				
+							<td>
+								
+								<form>
+									
+
+									<input type="text" name="" placeholder="Enter coupon code">
+									<button>add coupon</button>
+
+								</form>
+
+
+
+							</td>
+						</tr>
+
+					</table>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<table class="table">
+							<tr>
+								<td><b>subtotal</b></td>
+								<td>
+									
+									{{cart.get_cart_subtotal}}
+
+								</td>
+							</tr>
+							<tr>
+								<td><b>shipping total</b></td>
+								<td>
+									
+									{{cart.get_shipping_rates}}
+
+								</td>
+							</tr>
+							<tr>
+								<td><b>dropship total</b></td>
+								<td>
+									
+									{{cart.get_dropship_rate}}
+
+								</td>
+							</tr>
+							<tr>
+								<td><b>tax total</b></td>
+								<td>
+									
+									{{cart.get_tax_settings}}
+
+								</td>
+							</tr>
+							<tr>
+								<td><b>coupon</b></td>
+								<td>
+									
+									{{cart.get_coupon_settings}}
+
+								</td>
+							</tr>
+							<tr>
+								<td><b>grand total</b></td>
+								<td>
+										
+									{{cart.get_grandtotal}}
+
+
+								</td>
+							</tr>
+
+
+							<tr>
+
+								<td>
+										
+									<button>Proceed to checkout</button>
+
+
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+		
+		
+
+
+</div>
+</div>
+
+	{% endblock %}

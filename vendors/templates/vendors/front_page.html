@@ -1,0 +1,23 @@
+{% include 'ds_mp_app/header.html' %}
+	{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-2">
+		2
+		</div>
+		<div class="col-md-8">
+			<h4>Vendors</h4>
+
+			{% for vendor in vendors %}
+				<a href="{% url 'vendors:vendor_profile' vendor.pk %}">{{vendor}}</a>
+			{% endfor %}
+		</div>
+		<div class="col-md-2">
+		2
+		</div>
+	</div>
+</div>
+
+
+	{% endblock %}

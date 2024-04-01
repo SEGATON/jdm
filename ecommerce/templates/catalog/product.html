@@ -1,0 +1,148 @@
+{% extends 'django_experiments_app/base.html' %}
+{% block content %}
+
+{% if messages %}
+<!-- ============================================================================================================== -->
+
+{{koko}}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-8">
+			<ul class="messages">
+			{% for message in messages %}
+			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+			</ul>
+		</div>
+		<div class="col-md-2"></div>
+		</div>
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	<!-- ============================================================================================================== -->
+{% endif %}
+	<div class="container">
+	<div class="row">	
+		<div class="col-lg-12">
+			{% include 'components/breadcrumbs.html' %}
+		</div>	
+	</div>
+	</div>
+	<div class="container">	
+		<div class="row">
+			<div class="col-md-7">
+				<div class="row">
+					<div class="col-lg-12">
+					<!-- ============================================================================================================== -->
+
+					{% include 'components/image_gallery.html' %}
+					<!-- ============================================================================================================== -->	
+					</div>
+					<div class="col-lg-12">
+					<!-- ============================================================================================================== -->			
+					{% include 'content/product_description_full.html' %}
+					<!-- ============================================================================================================== -->	
+					</div>
+					<div class="col-lg-12">
+					<!-- ============================================================================================================== -->			
+					{% include 'content/product_specifications_list.html' %}
+					<!-- ============================================================================================================== -->	
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5">
+
+
+
+
+		<div class="">
+
+
+
+
+					<div class="btn-group float-end">
+					  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+					    add to wishlist
+					  </button>
+					  {% if user.is_authenticated %}
+					  <ul class="dropdown-menu dropdown-menu-end">
+					    <li>{% include 'components/add_to_wishlist_form.html' %}</li>
+					    <li><a  href="{% url 'ecommerce:create_wishlist'  %}" >create wishlist</a></li>
+
+					  </ul>
+{% endif %}
+
+					</div>
+
+	
+</div>
+
+		<div class="">
+
+
+				{% if user.is_authenticated %}
+				<form action="{% url 'ecommerce:like_product' product.pk %}" method="POST" class="float-end">
+					{% csrf_token %}
+					{% if liked %}
+					<button name="product_id" class="like_btn" value="{{product.pk}}"><i class="fa-solid fa-heart"></i>remove from wishlist</button>
+					{% else %}
+					<button  name="product_id" class="like_btn" value="{{product.pk}}"><i class="fa-regular fa-heart"></i>add to wishlist</button>
+					{% endif %}
+		
+				</form>
+				{% endif %}
+
+
+</div>
+
+				{% include 'content/product_title.html' %}
+				{% include 'actions/rate_review.html' %}
+				<p>
+					<b>By: </b><a href="{{product.brand.get_absolute_url}}">{{product.brand}}</a> | 
+					<a href="{{product.brand.get_absolute_url}}"><img src="{{product.brand.brand_logo.url}}" class="img-fluid" width="76"></a>
+
+
+				</p>
+				<!-- ============================================================================================================== -->	
+				<!-- ============================================================================================================== -->	
+				{% include 'content/product_description_short.html' %}
+				<!-- ============================================================================================================== -->	
+				{% include 'content/product_details_list.html' %}
+				<!-- ============================================================================================================== -->
+				{% if product.product_type == 'single_product' %}
+				{% include 'actions/add_single_product_to_cart_form.html' %}
+				{% include 'actions/pricing.html' %}
+				{% endif %}
+				{% if product.product_type == 'variable_product' %}
+				{% include 'actions/add_variable_product_to_cart_form.html' %}
+				{% endif %}
+				<!-- ============================================================================================================== -->
+				{% include 'content/product_ids.html' %}
+				<!-- ============================================================================================================== -->	
+
+				<!-- ============================================================================================================== -->
+				{% include 'content/shipping_date_information.html' %}
+				<!-- ============================================================================================================== -->
+
+
+			</div>	
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+<!-- ============================================================================================================== -->
+{% include 'content/related_products_by_category_list.html' %}
+<br>
+{% include 'content/latest_products_list.html' %}
+<!-- ============================================================================================================== -->
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

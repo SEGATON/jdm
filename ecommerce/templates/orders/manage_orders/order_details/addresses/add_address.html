@@ -1,0 +1,103 @@
+
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+	<div class="container ">
+		<div class="row">
+			<div class="col-md-2 border_right col_md_2_height_100_pc">
+
+				{% include 'memberships/sidebar_left.html' %}
+
+
+			</div>
+
+			<div class="col-md-5 ">
+				<br>
+			<h5>Addresses</h5>
+			<hr>
+
+
+			<hr>
+
+			<br>
+
+
+						
+								<h6>add address</h6>
+
+					
+								<form method="POST">
+									{% csrf_token %}
+	<div class="row g-1">
+
+
+
+<div class="col-md-6">
+									{{add_address_form.phone_number}}
+								</div>
+
+								<div class="col-md-6">
+									{{add_address_form.address_id_name}}
+								</div>
+
+
+
+
+
+		<div class="col-lg-12">
+									{{add_address_form.type_of_address}}
+								</div>
+								<div class="col-md-6">
+									{{add_address_form.first_name}}
+								</div>
+
+								<div class="col-md-6">
+									{{add_address_form.last_name}}
+								</div>
+								<div class="col-lg-12">
+									{{add_address_form.street_name_01}}
+								</div>
+
+								<div class="col-lg-12">
+									{{add_address_form.street_name_02}}
+								</div>
+
+								<div class="col-md-4">
+									{{add_address_form.street_city}}
+								</div>
+								<div class="col-md-4">
+									{{add_address_form.street_state}}
+								</div>
+								<div class="col-md-4">
+									{{add_address_form.street_zip_code}}
+								</div>
+								<div class="col-md-4">
+									{{add_address_form.date_created}}
+								</div>
+
+<div class="col-md-6">
+									{{add_address_form.default_address}}
+								</div>
+
+
+								<div class="col-lg-12">
+
+									<button>add address</button>
+								</div>
+
+								</form>
+							</div>
+
+		
+
+			</div>
+
+
+		</div>
+	</div>	
+
+
+	{% endblock %}
+
+
+
+

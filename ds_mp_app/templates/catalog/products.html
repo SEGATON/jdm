@@ -1,0 +1,61 @@
+{% load static %}
+{% include 'ds_mp_app/header.html' %}
+	{% block content %}
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-md-8">
+					<div class="row">
+						
+						<div class="col-md-10">
+							<div class="row">
+							{% for product in products %}
+								<div class="col-md-3">
+										<div class="card">
+											<div class="row">
+											<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+											<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>										
+												<div class="col-lg-12">
+													<span id="save_btn">
+														<a href="" id="save_product">
+															<i class="fa-solid fa-heart"></i>
+														</a>
+													</span>
+													{% load thumbnail %}
+													<a href="{{product.get_absolute_url}}"><img src="{% thumbnail product.featured_image 300x300 crop %}" class="img-fluid"></a>
+												</div>
+												<div class="col-lg-12">
+													<a href="{{product.get_absolute_url}}" id="catalog_product_title">{{product.title|truncatechars:20}}</a>
+												</div>
+												<div class="col-lg-12">
+														{% if user.is_authenticated %}
+													{% if product.price_sale %}
+														<s>{{product.price_regular}}</s>
+														<b>{{product.price_sale}}</b>
+													{% else %}
+														{{product.price_regular}}
+													{% endif %}
+												</div>
+												<div class="col-lg-12">
+													{% load ratings %}
+													{% ratings product %}
+												</div>
+												<div class="col-lg-12">
+								
+												</div>																														{% else %}
+												<p>Please <a href="{% url 'accounts:login' %}">login</a> to view prices.</p>
+											{% endif %}							
+											</div>
+										</div>
+								</div>
+							{% endfor %}
+							</div>
+						</div>	
+					</div>
+				</div>
+				<div class="col-md-2">
+				2
+				</div>
+			</div>
+		</div>
+	{% endblock %}

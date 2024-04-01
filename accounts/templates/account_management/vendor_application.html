@@ -1,0 +1,87 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+		
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      
+    </div>
+    <div class="col-md-8">
+    	<h1>Vendor application</h1>
+    	<hr>
+    	<br>
+    	<table class="table table-striped table-hover ">
+    	<form action="" method="POST">
+    	{% csrf_token %}
+      	<tr>
+      		<td id="vendor_application_table_label_column">{{vendor_application_form.type_of_business.label}}</td>
+      		<td>{{vendor_application_form.type_of_business}}</td>
+      	</tr>
+      		<td id="vendor_application_table_label_column">{{vendor_application_form.business_lega_name.label}}</td>
+      		<td>{{vendor_application_form.business_lega_name}}</td>
+      	<tr>
+      		<td id="vendor_application_table_label_column">{{vendor_application_form.d_b_a.label}}</td>
+      		<td>{{vendor_application_form.d_b_a}}</td>
+      	</tr>
+      		<td id="vendor_application_table_label_column">{{vendor_application_form.legal_business_address_line_1.label}}</td>
+      		<td>{{vendor_application_form.legal_business_address_line_1}}</td>
+      	<tr>
+      		<td id="vendor_application_table_label_column">{{vendor_application_form.legal_business_address_line_2.label}}</td>
+      		<td>{{vendor_application_form.legal_business_address_line_2}}</td>
+      	</tr>
+
+
+
+
+
+
+      	<tr>
+      		<td id="vendor_application_table_label_column">{{vendor_application_form.legal_business_unit.label}}</td>
+      		<td>{{vendor_application_form.legal_business_unit}}</td>
+      	</tr>
+
+      	<tr>
+      		<td id="vendor_application_table_label_column">{{vendor_application_form.legal_business_city.label}}</td>
+      		<td>{{vendor_application_form.legal_business_city}}</td>
+      	</tr>
+
+
+            	<tr>
+      		<td id="vendor_application_table_label_column">{{vendor_application_form.legal_business_state.label}}</td>
+      		<td>{{vendor_application_form.legal_business_state}}</td>
+      	</tr>
+
+
+            	<tr>
+      		<td id="vendor_application_table_label_column">{{vendor_application_form.legal_business_zip_code.label}}</td>
+      		<td>{{vendor_application_form.legal_business_zip_code}}</td>
+      	</tr>
+
+            	<tr>
+      		<td id="vendor_application_table_label_column">
+
+      			{{vendor_application_form.tax_ID.label}} </td>
+      				<td> {{vendor_application_form.ssn}} or  {{vendor_application_form.ssn.label}}
+      			{{vendor_application_form.tax_ID}}
+      		</td>
+      	</tr>
+
+
+
+
+      	<tr>
+      		<td></td>
+      	</tr>
+
+      	<tr>
+      		<td><button>Apply</button></td>
+      	</tr>
+      </form>
+    </div>
+    <div class="col-md-2">
+      
+    </div>
+  </div>
+</div>
+
+	{% endblock %}

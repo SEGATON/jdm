@@ -1,0 +1,53 @@
+
+
+
+<div class="five_star_rating_content_box">
+
+	<p>There are {{ratings.count}} ratings</p>
+
+
+
+	{% for rating in ratings %}
+		<div id="rating_single">
+
+
+		<div class="rating_single_header">
+			<p class="float-start">{{rating.user}} | {{rating.rating}} | {{rating.date_created}} 
+
+
+				<button id="rating_thumb_up"><i class="fa-solid fa-thumbs-up"></i></button>
+				{{rating.thumbs_up}}
+				<button id="rating_thumb_down"><i class="fa-solid fa-thumbs-down"></i></button>
+				{{rating.thumbs_down}}  |   
+
+
+				<div class="dropdown">
+				  <a class="  che dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				 More actions
+				  </a>
+
+				  <ul class="dropdown-menu">
+				    <li><a class="dropdown-item" href="#"><i class="fa-regular fa-flag"></i> Flag</a></li>
+				    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-share"></i> Share</a></li>
+			
+				  </ul>
+				</div>
+
+
+			</p>
+
+		</div>
+		<div class="rating_single_body">
+			<p>{{rating.comment|safe}}</p>
+		</div>
+
+		<div class="rating_single_footer">
+
+		</div>
+
+		</div>
+
+	{% endfor %}
+
+
+</div>

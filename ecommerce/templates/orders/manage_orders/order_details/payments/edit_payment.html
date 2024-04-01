@@ -1,0 +1,81 @@
+{% extends 'django_experiments_app/base.html' %}
+	{% block content %}
+	<div class="container ">
+		<div class="row">
+			<div class="col-md-2 border_right col_md_2_height_100_pc">
+
+				{% include 'memberships/sidebar_left.html' %}
+
+
+			</div>
+
+			<div class="col-md-5 ">
+				<br>
+			<h5>Edit payment</h5>
+
+			<hr>
+
+	 
+
+
+			<br>
+
+
+						
+								<div class="card p-3">
+									<br>
+								<h6>payment methods on account</h6>
+								<br>
+								<hr>
+								<br>
+								
+									<form method="POST">
+										{% csrf_token %}
+								
+<div class="row g-1">
+
+										<div class="col-lg-12">{{add_payment_method_form.payment_method}}</div>
+									
+											<div class="col-md-6">{{add_payment_method_form.first_name}}</div>
+											<div class="col-md-6">{{add_payment_method_form.last_name}}</div>
+										
+
+									
+											<div class="col-lg-12">{{add_payment_method_form.card_number}}</div>
+									
+
+										<div class="col-md-6">{{add_payment_method_form.expiration_date}}</div>
+										<div class="col-md-6">{{add_payment_method_form.security_code}}</div>
+										<div class="col-md-6">{{add_payment_method_form.zip_code}}</div>
+										<div class="col-md-6">{{add_payment_method_form.card_type}}</div>
+
+
+										<div class="col-md-6"><p>set to default? &nbsp;{{add_payment_method_form.set_to_default}}</p></div>
+
+
+										<div class="col-md-6"><button>edit payment</button></div>
+								</form>
+								</div>
+</div>
+						
+		
+
+			</div>
+
+
+		</div>
+	</div>	
+
+<style type="text/css">
+	.custom_tf{
+
+	}
+	.custom_tf_CCnum{
+		width: 100%;
+	}
+</style>
+	{% endblock %}
+
+
+
+

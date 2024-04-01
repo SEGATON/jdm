@@ -1,0 +1,15 @@
+<div class="product_specifications_set">
+	<h5>product specifications</h5>
+	<br>
+	<hr>
+	<br>
+	<table class="table product_specifications_set_table">
+	{% for specification in product.product_specifications_set.specifications_set.specifications.all %}
+			<tr>
+				<td><p><b>{{specification.specification_name}}</b></p></td>
+				{% if specification.specification_value %}<td>{{specification.specification_value}}</td> {% endif %}
+				<td><p>{{specification.specification_description|safe}}</p></td>
+			</tr>
+	{% endfor %}
+	</table>
+</div>

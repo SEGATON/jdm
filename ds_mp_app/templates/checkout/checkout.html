@@ -1,0 +1,135 @@
+
+
+
+
+
+
+{% include 'ds_mp_app/header.html' %}
+{% load thumbnail %}
+	{% block content %}
+
+
+<div class="container">
+
+			<div class="row g-2">
+				
+				<div class="col-md-9">
+					
+				<br>
+				<div class="card">
+					
+		<table class="table table-hover">
+<thead>
+						<tr>
+							<td></td>
+							<td><b>Product title</b></td>
+							<td><b>SKU</b></td>
+							
+							<td><b>Price regular</b></td>
+
+							<td><b>Price sale</b></td>
+							<td><b>QTY</b></td>
+							<td><b>item total price</b></td>
+							
+							<td><b><i class="fa-solid fa-xmark"></i></b></td>
+						</tr>
+					</thead>
+						{% for order_item in order.order_items.all %}
+
+
+
+
+
+		<tbody>
+			<tr>
+				<td>
+					<a href="{{order_item.order_item.get_absolute_url}}"><img src="{% thumbnail order_item.order_item.featured_image 30x30 crop %}" class="img-fluid" style="border-radius: 4px;"></a>
+				</td>
+
+				<td>
+					<a href="{{order_item.order_item.get_absolute_url}}">{{order_item.order_item.title}}</a>
+				</td>
+				<td>{{order_item.order_item.product_SKU}}</td>
+
+				<td>${{order_item.order_item.price_regular}}</td>
+				<td>{% if order_item.order_item.price_sale %}${{order_item.order_item.price_sale}}{% endif %}</td>
+				<td>
+					<a href="{% url 'ds_mp_app:remove_single_item_from_cart' order_item.order_item.slug %}"><i class="fa-solid fa-minus"></i></a>
+					{{order_item.order_item_quantity}}
+					<a href="{% url 'ds_mp_app:add_to_cart' order_item.order_item.slug %}"><i class="fa-solid fa-plus"></i></a>
+				</td>
+				<td>${{order_item.get_total_item_price}}</td>
+				<td><a href="{% url 'ds_mp_app:remove_item_from_cart' order_item.order_item.slug %}"><i class="fa-solid fa-trash-can"></i></a></td>
+			
+			</tr>
+		</tbody>
+
+
+								
+									
+								
+						
+									
+						
+						{% endfor %}
+					
+						</table>
+
+				</div>
+
+					
+					
+				</div>
+
+
+
+
+
+
+
+				<div class="col-md-3">
+					<br>
+				
+					<div class="card p-1">
+						<div class="row">
+				<div class="col-lg-12">
+				<h2>Cart totals:</h2>
+				<hr>
+				<h5>Subtotal:</h5>
+				{{order.get_sub_total}}
+				
+
+				<h5>Dropship total:</h5>
+				{{order.add_dropship_fee}}
+				<h5>Tax total:</h5>
+				{{order.calculate_tax_rate}}
+				<h5>Grandtotal:</h5>
+				{{order.get_grand_total}}
+				</div>
+		<div class="col-lg-12">
+
+<!-- writes out the form tag automatically -->
+{{ form.render }}
+
+
+				</div>
+			
+			</div>
+
+
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+			</div>
+
+</div>
+
+	{% endblock %}
