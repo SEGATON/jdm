@@ -16,3 +16,4 @@ gunicorn
 django-postman
 django-advanced-filters
 django-dynamic-breadcrumbs
+dynamic_breadcrumbs
