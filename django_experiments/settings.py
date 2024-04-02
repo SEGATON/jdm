@@ -86,7 +86,7 @@ INSTALLED_APPS = [
 
     'django_comments_xtd',
     'django_comments',
-    'dynamic_breadcrumbs',
+
 
 
     'rest_framework',
@@ -135,7 +135,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'five_start_rating_system.views.ratings',
               
-                "dynamic_breadcrumbs.context_processors.breadcrumbs",
+
                 #'ecommerce.views.categories',
              
                 'blog.views.categories',
