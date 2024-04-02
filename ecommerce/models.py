@@ -13,6 +13,8 @@ from accounts.models import CustomUser
 from colorfield.fields import ColorField
 from mptt.models import MPTTModel, TreeForeignKey
 
+
+
 class TaxRate(models.Model):
 	state = USStateField()
 	tax_rate_amount = models.DecimalField(max_digits=9, decimal_places=2)
@@ -23,7 +25,11 @@ class TaxRate(models.Model):
 	def get_tax_rate_percentage(self):
 		tax_rate_percentage = 'go fuck yourself'
 		return tax_rate_percentage
-		
+	
+
+
+
+
 class TaxSettings(models.Model):
 	title = models.CharField(max_length=50, null=True,blank=True)
 	slug = models.SlugField(max_length=50, null=True,blank=True)
@@ -32,6 +38,9 @@ class TaxSettings(models.Model):
 
 	def __str__(self):
 		return self.title
+
+
+
 
 class ProductSize(models.Model):
 	SIZE_LABEL = {
@@ -54,43 +63,76 @@ class ProductSize(models.Model):
 	size_label = models.CharField(choices=SIZE_LABEL,max_length=500, null=True,blank=True)
 	size_value = models.DecimalField(max_digits=9, decimal_places=2)
 
+
+
+
 class ProductSizeSet(models.Model):
 	title = models.CharField(max_length=50, null=True,blank=True)
 	slug = models.SlugField(max_length=50, null=True,blank=True)
 	sizes = models.ManyToManyField(ProductSize)
 
+
+
+
 class ProductAttribute(models.Model):
 	attribute = models.CharField(max_length=1000)
+
+
+
 
 class ProductAttributes(models.Model):
 	attributes = models.ManyToManyField(ProductAttribute)	
 
+
+
+
 class ProductAttributesSets(models.Model):
 	attributes_set_name = models.CharField(max_length=1000)
 	attributes_set = models.ForeignKey(ProductAttributes, on_delete=models.CASCADE)
+
+
+
 
 class ProductSpecification(models.Model):
 	specification_name 	= models.CharField(max_length=1000, null=True,blank=True)
 	specification_value = models.CharField(max_length=1000, null=True,blank=True)
 	specification_description = RichTextField(max_length=10000, null=True,blank=True)
 
+
+
+
 class ProductSpecifications(models.Model):
 	specifications = models.ManyToManyField(ProductSpecification)
+
+
+
 
 class ProductSpecificationsSets(models.Model):
 	specifications_set_name = models.CharField(max_length=1000)
 	specifications_set 	= models.ForeignKey(ProductSpecifications, on_delete=models.CASCADE)
 
+
+
+
 class ProductGalleryImage(models.Model):
 	image_name = models.CharField(max_length=300)
 	image = models.ImageField(upload_to='media/PRODUCT/GALLERY_IMAGES/', null=True, blank=True, max_length=500)	
 
+
+
+
 class ProductGalleryImagesSet(models.Model):
 	images = models.ManyToManyField(ProductGalleryImage) 	
+
+
+
 
 class ProductImageGallery(models.Model):
 	gallery_name = models.CharField(max_length=300)
 	images = models.ForeignKey(ProductGalleryImagesSet, on_delete=models.CASCADE)
+
+
+
 
 class Category(MPTTModel):
 	title = models.CharField(max_length=50, null=True,blank=True)
@@ -110,6 +152,9 @@ class Category(MPTTModel):
 
 	def get_absolute_url(self):
 		return reverse('ecommerce:category', args=[self.slug])
+
+
+
 
 class ProductDetailsListItem(models.Model):
 	title = models.CharField(max_length=50, null=True,blank=True)
