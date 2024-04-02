@@ -47,7 +47,7 @@ urlpatterns = [
     path('vendors/', include('vendors.urls')),
 
     path('messages/', include('postman.urls')),
-    path('herald/', include('herald.urls')),
+
 
 ]
 if settings.DEBUG:

@@ -75,7 +75,7 @@ INSTALLED_APPS = [
     'django_social_share',
 
     'postman',
-    'herald',
+    
 
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
