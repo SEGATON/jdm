@@ -15,3 +15,4 @@ django-star-ratings
 gunicorn
 django-postman
 django-advanced-filters
+django-dynamic-breadcrumbs
