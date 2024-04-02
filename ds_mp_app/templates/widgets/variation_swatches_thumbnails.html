@@ -1,0 +1,93 @@
+
+
+<!--  AJAX VARIATION -->
+<div class="row g-1">
+{% for variation in product.product_variations_set.variations.all %}
+		<div class="col-md-2">
+			<div class="card" id="product_variable_thumbnail_swatch_card">
+				<a href="{{variation.slug}}">
+					{% load thumbnail %}
+					<img src="{% thumbnail variation.featured_image 60x60 crop %}" class="img-fluid p-1" id="product_variable_thumbnail">
+					<p class="" id="product_variable_price_swatch_card">
+						{% if variation.price_sale %} 
+							<s>${{variation.price_regular}}</s> 
+							<b>${{variation.price_sale}}</b> 
+							<br> 
+						{% else %} 
+							${{variation.price_regular}} 
+						{% endif %}
+					</p>
+				</a>
+			</div>
+		</div>
+{% endfor %}
+</div>
+
+
+
+
+<!--  FORM VARIATION -->
+<div class="row g-1">
+	<FORM action="" method="POST">
+		<select>
+			{% for variation in product.product_variations_set.variations.all %}
+				<option>
+						<div class="col-md-2">
+							<div class="card" id="product_variable_thumbnail_swatch_card">
+						
+									{% load thumbnail %}
+									<img src="{% thumbnail variation.featured_image 60x60 crop %}" class="img-fluid p-1" id="product_variable_thumbnail">
+									<p class="" id="product_variable_price_swatch_card">
+										{% if variation.price_sale %} 
+											<s>${{variation.price_regular}}</s> 
+											<b>${{variation.price_sale}}</b> 
+											<br> 
+										{% else %} 
+											${{variation.price_regular}} 
+										{% endif %}
+									</p>
+								
+							</div>
+						</div>
+				</option>
+			{% endfor %}
+		</select>
+	</FORM>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .models import Order,OrderItem
 # Create your views here.
-from ecommerce.models import Product, Category
+from ecommerce.models import Product, Category, Brand
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
@@ -227,9 +227,12 @@ def brand(request, slug):
 
 	brand = get_object_or_404(Brand, slug=slug)
 
+	products = brand.brand_products
+
 	return render(request, 'catalog/brands/brand.html', {
 
-			'brand':brand
+			'brand':brand,
+			'products':products
 
 		})
 
@@ -355,6 +358,7 @@ def dropship_single_product(request, slug):
 		messages.success(request, "button clicked")
 	
 		return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
 
 @login_required
 def dropship_variable_product(request, slug):

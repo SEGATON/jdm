@@ -252,11 +252,11 @@ class Brand(models.Model):
 	brand_cover	= models.ImageField(upload_to='media/PRODUCT/BRAND_COVERS/', null=True, blank=True)
 	description = RichTextField(null=True, blank=True)
 	brand_social_follow	= models.ForeignKey(BrandSocialFollows, on_delete=models.CASCADE, null=True, blank=True)
-	brand_products = models.ManyToManyField(BrandProducts, related_name='brand_products', null=True, blank=True)
+	brand_products = models.ManyToManyField('Product', related_name='brand_products', null=True, blank=True)
 	brand_followers	= models.ManyToManyField(CustomUser)
 
 	def get_absolute_url(self):
-		return reverse('ecommerce:brand', args=[self.slug])
+		return reverse('ds_mp_app:brand', args=[self.slug])
 
 	def __str__(self):
 		return str(self.title) 

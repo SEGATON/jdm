@@ -485,3 +485,36 @@ margin: 10px;
   text-transform: capitalize;
   border-radius: 3px;
 }
+
+
+
+#product_variable_thumbnail_swatch_card{
+  border-radius: 3px;
+  border: 1px solid #333;
+  min-height: 100px;
+}
+
+#product_variable_thumbnail{
+  border-radius: 3px;
+  border: 1px solid #333;
+  margin: 4px;
+}
+
+#product_variable_price_swatch_card{
+  border-radius: 3px;
+  border: 1px solid #333;
+  margin: 4px;
+
+}
+
+#save_btn{
+  margin-top:10px;
+  margin-left: 10px;;
+  z-index: 99999;
+  position: absolute;
+
+}
+
+#save_product_heart_btn{
+
+}
