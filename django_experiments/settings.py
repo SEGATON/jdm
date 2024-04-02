@@ -88,7 +88,7 @@ INSTALLED_APPS = [
     'django_comments',
     'dynamic_breadcrumbs',
 
-    'chatterbot.ext.django_chatterbot',
+
     'rest_framework',
 
     'paypal.standard.ipn',
