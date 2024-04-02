@@ -19,3 +19,4 @@ django-dynamic-breadcrumbs
 django-paypal
 django-colorfield
 django-crispy-forms
+django-adminactions
