@@ -21,11 +21,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('django_experiments_app.urls')),
+    path('', include('ds_mp_app.urls')),
+    path('django_experiments_app/', include('django_experiments_app.urls')),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
     path('blog/', include('blog.urls')),
-    path('ds_mp_app/', include('ds_mp_app.urls')),
     path('ecommerce/', include('ecommerce.urls')),
     path('five_start_rating_system/', include('five_start_rating_system.urls')),    
 

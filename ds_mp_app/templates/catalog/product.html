@@ -1,8 +1,14 @@
 
 {% if product.product_type == 'single_product' %}
+
 	{% include 'catalog/single_product.html' %}
+
 {% elif  product.product_type == 'variable_product' %}
+
 	{% include 'catalog/variable_product.html' %}
+
 {% elif  product.product_type == 'groupped_product' %}
+
 	{% include 'catalog/groupped_product.html' %}
+
 {% endif %}
