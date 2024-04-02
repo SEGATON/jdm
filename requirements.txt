@@ -17,3 +17,4 @@ django-postman
 django-advanced-filters
 django-dynamic-breadcrumbs
 django-paypal
+django-colorfield
