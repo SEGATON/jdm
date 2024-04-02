@@ -13,4 +13,4 @@ django-social-share==2.3.0
 django-localflavor==4.0
 django-star-ratings
 gunicorn
-postman
+django-postman
