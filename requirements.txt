@@ -14,3 +14,4 @@ django-localflavor==4.0
 django-star-ratings
 gunicorn
 django-postman
+django-advanced-filters
