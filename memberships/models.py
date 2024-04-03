@@ -9,7 +9,7 @@ from easy_thumbnails.fields import ThumbnailerImageField
 
 class Profile(models.Model):
    
-          user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, related_name='profile')
+          user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, related_name='profile')
           biography = RichTextField(max_length=10000, null=True, blank=True)
 
 
@@ -29,3 +29,11 @@ class Profile(models.Model):
 
           def __str__(self):
                     return str(self.user)
+
+
+
+
+class Bookmark(models.Model):
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, related_name='ds_mp_product_bookmark_user')
+    products = models.ManyToManyField(Product, null=True, blank=True, related_name='ds_mp_product_bookmark')

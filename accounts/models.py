@@ -89,3 +89,6 @@ class CustomUser(AbstractUser):
 		)
 
 	application_status = models.CharField(max_length=100, choices=APPLICATION_STATUS, null=True, blank=True)
+
+
+

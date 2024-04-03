@@ -1,0 +1,8 @@
+<form action="{% url 'memberships:add_to_bookmarks' product.slug %}" method="POST">
+	{% csrf_token %}
+	<span id="save_btn">
+		<button  id="save_product_heart_btn">
+			<i class="fa-solid fa-heart"></i>
+		</button>
+	</span>
+</form>

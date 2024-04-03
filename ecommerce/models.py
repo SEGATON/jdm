@@ -498,6 +498,9 @@ class Product(models.Model):
 
 	product_saves = models.ManyToManyField(CustomUser, null=True, blank=True)
 
+
+	vote = models.IntegerField()
+
 	def get_absolute_url(self):
 		return reverse('ecommerce:product', args=[self.slug])
 
@@ -852,7 +855,6 @@ class Wishlist(models.Model):
 
 	def __str__(self):
 		return self.title
-
 
 
 

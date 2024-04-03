@@ -498,3 +498,19 @@ def refund_request(request, pk):
 			'refund_request':refund_request
 		})
 
+
+
+
+@login_required
+def add_to_bookmarks(request, slug):
+	product = get_object_or_404()
+	return render(request, '', {
+
+		})
+
+@login_required
+def remove_from_bookmarks(request, slug):
+
+	return render(request, '', {
+			
+		})

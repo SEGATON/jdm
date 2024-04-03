@@ -3,7 +3,12 @@ from django.shortcuts import get_object_or_404
 from django.views import generic
 # Create your views here.
 
+from django.http import HttpResponseRedirect
+from .models import Bookmark
 from .models import Profile
+
+from django.contrib.auth.decorators import login_required
+
 def profile(request):
 
 	return render(request, 'memberships/profile.html', {
@@ -43,3 +48,50 @@ def delete_profile(request, pk):
 
 def follow_profile(request, pk):
 	pass
+
+
+
+
+
+@login_required
+def bookmarks(request, pk):
+	profile = get_object_or_404(Profile, pk=pk)
+	
+	return render(request, 'memberships/bookmarks.html' ,{
+			'profile':profile
+		})
+
+@login_required
+def add_to_bookmarks(request, slug):
+
+	return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+@login_required
+def remove_from_bookmarks(request, slug):
+
+	return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

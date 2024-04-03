@@ -19,11 +19,11 @@
 												<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
 												<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>										
 													<div class="col-lg-12">
-														<span id="save_btn">
-															<a href="" id="save_product_heart_btn">
-																<i class="fa-solid fa-heart"></i>
-															</a>
-														</span>
+
+														
+														{% include 'widgets/bookmarking_system.html' %}
+
+
 														{% load thumbnail %}
 														<a href="{{product.get_absolute_url}}"><img src="{% thumbnail product.featured_image 300x300 crop %}" class="img-fluid"></a>
 													</div>
